@@ -39,11 +39,11 @@ function unpackCover([work,w,h,mw,mh]) {
 function unpack([id,group,title,cat,n,bucket,work,w,h,mw,mh]) {
   return {id,group,title,cat,n,bucket,cover:unpackCover([work,w,h,mw,mh])};
 }
-function unpackDetail([id,title,width,height,crop,quality,original]) {
+function unpackDetail([id,title,width,height,crop,quality,original,avif=true]) {
   const prefix='media/v2/'+id;
   return {id,title,width,height,crop,quality,original,variants:{
     s:[prefix+'-s.avif',prefix+'-s.webp'],
-    detail:[prefix+'-detail.avif',prefix+'-detail.webp'],
+    detail:[prefix+(avif?'-detail.avif':'-detail.webp'),prefix+'-detail.webp'],
   }};
 }
 window.registerBucket=(key,data)=>buckets.set(key,data);
@@ -294,7 +294,7 @@ function fillSlide(slide,work,thumb) {
     if(token===revision&&viewer.open&&art.isConnected)art.setAttribute('data-loaded','');
   };
   if(high.decode) high.decode().then(reveal).catch(()=>{
-    if(token!==revision||!viewer.open) return;
+    if(token!==revision||!viewer.open||work.variants.detail[0]===work.variants.detail[1]) return;
     high.src=work.variants.detail[1];
     return high.decode().then(reveal).catch(()=>{});
   });

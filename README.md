@@ -8,7 +8,7 @@ A gallery of 3,666 images across 22 collections. Browse grouped posts, swipe thr
 
 ## 在线体验 / Live demo
 
-- [Cloudflare Demo](https://xiaosang-gallery.xiaosang.cc/)（部署待核验）
+- [Cloudflare Demo](https://xiaosang.cc/xiaosang-gallery/)（部署待核验）
 - [GitHub Repo](https://github.com/holynova/xiaosang-gallery)
 
 <img src="assets/qr.png" width="160" alt="扫描二维码打开 xiaosang AI图集">
@@ -16,7 +16,6 @@ A gallery of 3,666 images across 22 collections. Browse grouped posts, swipe thr
 ## 本地运行 / Run locally
 
 ```sh
-npm ci
 python3 -m pip install Pillow
 python3 scripts/migrate_full.py scripts/inventory.json
 python3 scripts/build_skills.py
@@ -30,8 +29,9 @@ npm run preview
 
 ```sh
 npm run build
-npm run deploy:check
-npm run deploy
+node /path/to/holynova.github.io/scripts/stage-cloudflare.mjs "$PWD/dist"
+cd /path/to/holynova.github.io
+npx --yes wrangler@4.128.0 deploy --config wrangler.jsonc
 ```
 
-Cloudflare Workers Static Assets 从 `main` 手动发布。图片与打包产物由 Git 忽略。
+图库从 `main` 构建，纳入作品集的 `xiaosang-portfolio` Worker。图片与打包产物由 Git 忽略。

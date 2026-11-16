@@ -4,11 +4,6 @@
   "private": true,
   "scripts": {
     "preview": "python3 -m http.server 8780 --bind 127.0.0.1 -d dist",
-    "build": "python3 scripts/build_release.py",
-    "deploy:check": "wrangler deploy --dry-run --config wrangler.jsonc",
-    "deploy": "wrangler deploy --config wrangler.jsonc"
-  },
-  "devDependencies": {
-    "wrangler": "4.128.0"
+    "build": "python3 scripts/build_release.py"
   }
 }

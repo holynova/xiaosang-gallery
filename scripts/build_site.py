@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import html
 import json
+import subprocess
 
 root=Path(__file__).resolve().parent.parent
 args=argparse.ArgumentParser()
@@ -27,18 +28,17 @@ def release_file(relative):
     dest.hardlink_to(root/relative)
 
 def release_images(profiles):
-    cap=1200
-    preferred=zip_longest(*(p['works'] for p in profiles))
-    prioritized=(w for line in preferred for w in line if w is not None)
-    medium={w['id'] for w in islice(prioritized, cap)}
+    # The shared portfolio Worker also serves all of its existing project files.
+    priority=zip_longest(*(p['works'] for p in profiles))
+    prioritized=(w for row in priority for w in row if w is not None)
+    avif_detail={w['id'] for w in islice(prioritized, 900)}
     for p in profiles:
         for photo in p['works']:
-            v=photo['variants']
-            if photo['id'] in medium:
-                v['m']=[v['m'][0],v['s'][1],*v['m'][2:]]
-            else:
-                v['m']=v['s']
-            for f in {photo['original'], *(target for v in v.values() for target in v[:2])}:
+            variants=photo['variants']
+            variants['m']=variants['s']
+            if photo['id'] not in avif_detail:
+                variants['detail']=[variants['detail'][1],*variants['detail'][1:]]
+            for f in {photo['original'], *(target for v in variants.values() for target in v[:2])}:
                 release_file(f)
 
 def load_data():
@@ -58,7 +58,7 @@ def pack_cover(cover):
     return [id,w,h,mw,mh]
 
 def pack_detail(work):
-    return [work[k] for k in ('id','title','width','height','crop','quality','original')]
+    return [*(work[k] for k in ('id','title','width','height','crop','quality','original')),work['variants']['detail'][0].endswith('.avif')]
 
 def render(tag):
     return html.escape(str(tag),quote=True)
@@ -170,7 +170,7 @@ lean_meta=[{**{k:v for k,v in x.items() if k not in ('template','cover')},'cover
 config=f'<script type="application/json" id="catalog-config">{dump({"meta":lean_meta,"seeds":[pack(p) for p in seeds],"count":len(feed),"singleWebpThumb":settings.cloudflare_static,"previews":[pack_detail(cover_details[p["cover"][0]]) for p in seeds]})}</script>'
 shell=(root/'src/gallery.html').read_text()
 shell=shell.replace('<!-- IMAGE_PRELOAD -->',preload)
-shell=shell.replace('<!-- SITE_ANALYTICS -->','<script async src="https://cloud.umami.is/script.js" data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4" data-domains="xiaosang-gallery.xiaosang.cc"></script>' if settings.cloudflare_static else '')
+shell=shell.replace('<!-- SITE_ANALYTICS -->','<script async src="https://cloud.umami.is/script.js" data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4" data-domains="xiaosang.cc"></script>' if settings.cloudflare_static else '')
 shell=shell.replace('<!-- SEED_POSTS -->',''.join(seed_html))
 shell=shell.replace('<!-- CATALOG_CONFIG -->',config)
 shell=shell.replace('<!-- CRITICAL_GRID -->','<script>'+(root/'src/masonry.js').read_text()+'</script>')
@@ -183,6 +183,8 @@ if settings.cloudflare_static:
         release_file(package/'SKILL.md')
         for work in p['works'][:2]:
             release_file(package/'assets'/(work['id']+'.webp'))
+    head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+    (out/'release.json').write_text(dump({'project':'xiaosang-gallery','version':version,'commit':head,'series':len(meta),'works':sum(s['works'] for s in meta),'posts':len(feed)})+'\n')
     headers=(root/'src/cloudflare-headers').read_text()
     (out/'_headers').write_text(headers)
     staged=[f for f in out.rglob('*') if f.is_file()]
