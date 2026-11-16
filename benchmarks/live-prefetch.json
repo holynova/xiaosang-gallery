@@ -1,0 +1,713 @@
+{
+  "label": "live-prefetch",
+  "base": "https://xiaosang.cc/xiaosang-gallery/",
+  "release": {
+    "project": "xiaosang-gallery",
+    "version": "1.0.2",
+    "commit": "ee4df09520706aac342e9324356858ab15d9a825",
+    "series": 22,
+    "works": 3666,
+    "posts": 1488
+  },
+  "network": {
+    "offline": false,
+    "latency": 150,
+    "downloadThroughput": 200000,
+    "uploadThroughput": 93750,
+    "connectionType": "cellular4g"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 2,
+    "mobile": true
+  },
+  "cpu": 4,
+  "windowMs": 6500,
+  "runs": {
+    "cold": [
+      {
+        "first": {
+          "fcp": 512,
+          "lcp": {
+            "time": 760,
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif"
+          },
+          "cls": 0,
+          "tbt": 18,
+          "ttfb": 124.59999990463257,
+          "domReady": 837.8999999761581,
+          "seen": 6,
+          "shown": 6,
+          "thumbsReady": 1542.3999999761581,
+          "totalRequests": 21,
+          "firstPartyRequests": 18,
+          "thirdParty": 3,
+          "bytes": 372913,
+          "htmlTransfer": 10389,
+          "images": 13,
+          "imageBytes": 307905,
+          "offscreen": 7,
+          "originalRequests": 0,
+          "navigation": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/?bench=live-prefetch&n=0",
+            "start": 0,
+            "end": 200.59999990463257,
+            "transfer": 10389,
+            "encoded": 10089,
+            "proto": "h2",
+            "initiator": "navigation"
+          },
+          "resources": [
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif",
+              "start": 204.09999990463257,
+              "end": 717.5999999046326,
+              "transfer": 26647,
+              "encoded": 26347,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.ca33243f54adaca1.css",
+              "start": 204.79999995231628,
+              "end": 411.2999999523163,
+              "transfer": 4440,
+              "encoded": 4140,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.60d3e436e6e5a9f0.js",
+              "start": 204.89999997615814,
+              "end": 763,
+              "transfer": 9779,
+              "encoded": 9479,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-s.avif",
+              "start": 204.89999997615814,
+              "end": 800.2999999523163,
+              "transfer": 30258,
+              "encoded": 29958,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+              "start": 204.89999997615814,
+              "end": 830.5999999046326,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/crossover-219e379dc0bcb-s.avif",
+              "start": 489.59999990463257,
+              "end": 1176.2999999523163,
+              "transfer": 18913,
+              "encoded": 18613,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/concept-offside-s.avif",
+              "start": 489.59999990463257,
+              "end": 1439,
+              "transfer": 49332,
+              "encoded": 49032,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/stamps-market-s.avif",
+              "start": 489.59999990463257,
+              "end": 1542.3999999761581,
+              "transfer": 64924,
+              "encoded": 64624,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rock-riddle1-s.avif",
+              "start": 489.89999997615814,
+              "end": 920.3999999761581,
+              "transfer": 16759,
+              "encoded": 16459,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://cloud.umami.is/script.js",
+              "start": 1564.5,
+              "end": 1754,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/cdn-cgi/rum?",
+              "start": 1580.3999999761581,
+              "end": 1746.1999999284744,
+              "transfer": 300,
+              "encoded": 0,
+              "proto": "h2",
+              "initiator": "xmlhttprequest"
+            },
+            {
+              "url": "https://gateway.umami.is/api/send",
+              "start": 1764.2999999523163,
+              "end": 2810.2999999523163,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "fetch"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/creation-human-ai-s.avif",
+              "start": 1831.0999999046326,
+              "end": 2413.2999999523163,
+              "transfer": 12303,
+              "encoded": 12003,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rubber-39006ae953507-s.avif",
+              "start": 1831.0999999046326,
+              "end": 2473.5999999046326,
+              "transfer": 15089,
+              "encoded": 14789,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/liveaction-875274ceaff84-s.avif",
+              "start": 1831.0999999046326,
+              "end": 2488.7999999523163,
+              "transfer": 15990,
+              "encoded": 15690,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/toys-samurai-s.avif",
+              "start": 1831.0999999046326,
+              "end": 2548.0999999046326,
+              "transfer": 21094,
+              "encoded": 20794,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/data/index.js",
+              "start": 1832.0999999046326,
+              "end": 2646.7999999523163,
+              "transfer": 40100,
+              "encoded": 39800,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/city-928d90b524b6d-s.avif",
+              "start": 3228.0999999046326,
+              "end": 3568.7999999523163,
+              "transfer": 27001,
+              "encoded": 26701,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/citypop-airbrush-s.avif",
+              "start": 3228.1999999284744,
+              "end": 3470.6999999284744,
+              "transfer": 6728,
+              "encoded": 6428,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/wander-d19c4b2023b87-s.avif",
+              "start": 3228.899999976158,
+              "end": 3411.6999999284744,
+              "transfer": 2867,
+              "encoded": 2567,
+              "proto": "h2",
+              "initiator": "img"
+            }
+          ]
+        },
+        "image": {
+          "ready": 1085.2000000476837,
+          "preview": 27.700000047683716,
+          "resource": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-detail.avif",
+            "start": 28.399999976158142,
+            "end": 1061.7000000476837,
+            "transfer": 167993,
+            "encoded": 167693
+          }
+        }
+      },
+      {
+        "first": {
+          "fcp": 540,
+          "lcp": {
+            "time": 1008,
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif"
+          },
+          "cls": 0,
+          "tbt": 15,
+          "ttfb": 107.39999997615814,
+          "domReady": 595.8999999761581,
+          "seen": 6,
+          "shown": 6,
+          "thumbsReady": 1548,
+          "totalRequests": 21,
+          "firstPartyRequests": 18,
+          "thirdParty": 3,
+          "bytes": 372913,
+          "htmlTransfer": 10389,
+          "images": 13,
+          "imageBytes": 307905,
+          "offscreen": 7,
+          "originalRequests": 0,
+          "navigation": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/?bench=live-prefetch&n=1",
+            "start": 0,
+            "end": 205.20000004768372,
+            "transfer": 10389,
+            "encoded": 10089,
+            "proto": "h2",
+            "initiator": "navigation"
+          },
+          "resources": [
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif",
+              "start": 206.5,
+              "end": 941,
+              "transfer": 26647,
+              "encoded": 26347,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.ca33243f54adaca1.css",
+              "start": 207.39999997615814,
+              "end": 475.7000000476837,
+              "transfer": 4440,
+              "encoded": 4140,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+              "start": 207.5,
+              "end": 572.5,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.60d3e436e6e5a9f0.js",
+              "start": 207.5,
+              "end": 588.7000000476837,
+              "transfer": 9779,
+              "encoded": 9479,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-s.avif",
+              "start": 207.5,
+              "end": 1045.3999999761581,
+              "transfer": 30258,
+              "encoded": 29958,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/crossover-219e379dc0bcb-s.avif",
+              "start": 506,
+              "end": 1150.8999999761581,
+              "transfer": 18913,
+              "encoded": 18613,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rock-riddle1-s.avif",
+              "start": 506.10000002384186,
+              "end": 1128,
+              "transfer": 16759,
+              "encoded": 16459,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/concept-offside-s.avif",
+              "start": 506.10000002384186,
+              "end": 1466.1000000238419,
+              "transfer": 49332,
+              "encoded": 49032,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/stamps-market-s.avif",
+              "start": 506.10000002384186,
+              "end": 1548,
+              "transfer": 64924,
+              "encoded": 64624,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://cloud.umami.is/script.js",
+              "start": 1555.3000000715256,
+              "end": 1734.2000000476837,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/cdn-cgi/rum?",
+              "start": 1561.8000000715256,
+              "end": 1743.8000000715256,
+              "transfer": 300,
+              "encoded": 0,
+              "proto": "h2",
+              "initiator": "xmlhttprequest"
+            },
+            {
+              "url": "https://gateway.umami.is/api/send",
+              "start": 1741.8000000715256,
+              "end": 2726.100000023842,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "fetch"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/data/index.js",
+              "start": 2223.5,
+              "end": 2935.2000000476837,
+              "transfer": 40100,
+              "encoded": 39800,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/toys-samurai-s.avif",
+              "start": 2227.600000023842,
+              "end": 2844.2000000476837,
+              "transfer": 21094,
+              "encoded": 20794,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/creation-human-ai-s.avif",
+              "start": 2228.399999976158,
+              "end": 2709.8000000715256,
+              "transfer": 12303,
+              "encoded": 12003,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/liveaction-875274ceaff84-s.avif",
+              "start": 2228.399999976158,
+              "end": 2777.3000000715256,
+              "transfer": 15990,
+              "encoded": 15690,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rubber-39006ae953507-s.avif",
+              "start": 2228.399999976158,
+              "end": 2784.8000000715256,
+              "transfer": 15089,
+              "encoded": 14789,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/city-928d90b524b6d-s.avif",
+              "start": 3321.600000023842,
+              "end": 3670.399999976158,
+              "transfer": 27001,
+              "encoded": 26701,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/wander-d19c4b2023b87-s.avif",
+              "start": 3322.2000000476837,
+              "end": 3512.8000000715256,
+              "transfer": 2867,
+              "encoded": 2567,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/citypop-airbrush-s.avif",
+              "start": 3322.2000000476837,
+              "end": 3565.5,
+              "transfer": 6728,
+              "encoded": 6428,
+              "proto": "h2",
+              "initiator": "img"
+            }
+          ]
+        },
+        "image": {
+          "ready": 1036,
+          "preview": 12.899999976158142,
+          "resource": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-detail.avif",
+            "start": 13,
+            "end": 1012.7999999523163,
+            "transfer": 167993,
+            "encoded": 167693
+          }
+        }
+      },
+      {
+        "first": {
+          "fcp": 512,
+          "lcp": {
+            "time": 1864,
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif"
+          },
+          "cls": 0,
+          "tbt": 0,
+          "ttfb": 114.89999997615814,
+          "domReady": 587.8999999761581,
+          "seen": 6,
+          "shown": 6,
+          "thumbsReady": 1535.3999999761581,
+          "totalRequests": 21,
+          "firstPartyRequests": 18,
+          "thirdParty": 3,
+          "bytes": 372913,
+          "htmlTransfer": 10389,
+          "images": 13,
+          "imageBytes": 307905,
+          "offscreen": 7,
+          "originalRequests": 0,
+          "navigation": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/?bench=live-prefetch&n=2",
+            "start": 0,
+            "end": 199.80000007152557,
+            "transfer": 10389,
+            "encoded": 10089,
+            "proto": "h2",
+            "initiator": "navigation"
+          },
+          "resources": [
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/gouache-bund-s.avif",
+              "start": 201.5,
+              "end": 950.3000000715256,
+              "transfer": 26647,
+              "encoded": 26347,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.ca33243f54adaca1.css",
+              "start": 201.89999997615814,
+              "end": 461.2000000476837,
+              "transfer": 4440,
+              "encoded": 4140,
+              "proto": "h2",
+              "initiator": "link"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/assets/bundles/gallery.60d3e436e6e5a9f0.js",
+              "start": 201.89999997615814,
+              "end": 581.7000000476837,
+              "transfer": 9779,
+              "encoded": 9479,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-s.avif",
+              "start": 201.89999997615814,
+              "end": 1069.3000000715256,
+              "transfer": 30258,
+              "encoded": 29958,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+              "start": 202,
+              "end": 560.1000000238419,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/crossover-219e379dc0bcb-s.avif",
+              "start": 480.8000000715256,
+              "end": 1144.8999999761581,
+              "transfer": 18913,
+              "encoded": 18613,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/stamps-market-s.avif",
+              "start": 480.8000000715256,
+              "end": 1535.3999999761581,
+              "transfer": 64924,
+              "encoded": 64624,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/concept-offside-s.avif",
+              "start": 480.89999997615814,
+              "end": 1452.5,
+              "transfer": 49332,
+              "encoded": 49032,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rock-riddle1-s.avif",
+              "start": 481.39999997615814,
+              "end": 1106.5,
+              "transfer": 16759,
+              "encoded": 16459,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://cloud.umami.is/script.js",
+              "start": 1588,
+              "end": 1782.6000000238419,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/cdn-cgi/rum?",
+              "start": 1611,
+              "end": 1774,
+              "transfer": 300,
+              "encoded": 0,
+              "proto": "h2",
+              "initiator": "xmlhttprequest"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/data/index.js",
+              "start": 1784.8000000715256,
+              "end": 2480.7000000476837,
+              "transfer": 40100,
+              "encoded": 39800,
+              "proto": "h2",
+              "initiator": "script"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/liveaction-875274ceaff84-s.avif",
+              "start": 1791.1000000238419,
+              "end": 2323,
+              "transfer": 15990,
+              "encoded": 15690,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/toys-samurai-s.avif",
+              "start": 1791.1000000238419,
+              "end": 2403.8000000715256,
+              "transfer": 21094,
+              "encoded": 20794,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/creation-human-ai-s.avif",
+              "start": 1791.2000000476837,
+              "end": 2261.5,
+              "transfer": 12303,
+              "encoded": 12003,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/rubber-39006ae953507-s.avif",
+              "start": 1791.8999999761581,
+              "end": 2344.399999976158,
+              "transfer": 15089,
+              "encoded": 14789,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://gateway.umami.is/api/send",
+              "start": 1802.7000000476837,
+              "end": 3108.899999976158,
+              "transfer": 0,
+              "encoded": 0,
+              "proto": "",
+              "initiator": "fetch"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/city-928d90b524b6d-s.avif",
+              "start": 3167.3000000715256,
+              "end": 3530.100000023842,
+              "transfer": 27001,
+              "encoded": 26701,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/wander-d19c4b2023b87-s.avif",
+              "start": 3168.100000023842,
+              "end": 3380.7000000476837,
+              "transfer": 2867,
+              "encoded": 2567,
+              "proto": "h2",
+              "initiator": "img"
+            },
+            {
+              "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/citypop-airbrush-s.avif",
+              "start": 3168.100000023842,
+              "end": 3425.2000000476837,
+              "transfer": 6728,
+              "encoded": 6428,
+              "proto": "h2",
+              "initiator": "img"
+            }
+          ]
+        },
+        "image": {
+          "ready": 1049.1000000238419,
+          "preview": 24,
+          "resource": {
+            "url": "https://xiaosang.cc/xiaosang-gallery/media/v2/woodcut-mountain-detail.avif",
+            "start": 24.40000009536743,
+            "end": 1027.1000000238419,
+            "transfer": 167993,
+            "encoded": 167693
+          }
+        }
+      }
+    ],
+    "warm": []
+  }
+}
