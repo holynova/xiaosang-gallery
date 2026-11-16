@@ -1,4 +1,4 @@
-/* global arrangeGrid, observeThumbnails, thumbnailObserver */
+/* global arrangeGrid, observeThumbnails, disconnectThumbnails, thumbnailPrefetchReady */
 const $ = (s, root = document) => root.querySelector(s);
 const conf = JSON.parse($('#catalog-config').textContent);
 conf.seeds=conf.seeds.map(unpack);
@@ -52,10 +52,11 @@ window.registerLikes=(group,data)=>photoToPost.set(group,data);
 window.registerSearch=items=>{searchIndex=new Map(items);};
 window.registerTemplates=data=>{templates=data;};
 window.registerIndex=items=>{index=items.map(unpack);};
-function loadScript(url) {
+function loadScript(url, priority='auto') {
   if (scripts.has(url)) return scripts.get(url);
   const promise=new Promise((resolve,reject)=>{
     const el=document.createElement('script');
+    el.fetchPriority=priority;
     el.src=url;
     el.onload=resolve;
     el.onerror=()=>{el.remove();scripts.delete(url);reject(new Error(url));};
@@ -68,9 +69,9 @@ async function loadIndex() {
   if (!index) await loadScript('data/index.js');
   return index;
 }
-async function loadPost(post) {
+async function loadPost(post, priority='auto') {
   const key=post.group+'-'+post.bucket;
-  if(!buckets.has(key))await loadScript('data/'+key+'.js');
+  if(!buckets.has(key))await loadScript('data/'+key+'.js',priority);
   const data=buckets.get(key);
   return {data,photos:data.posts[post.id]};
 }
@@ -110,14 +111,22 @@ function card(post) {
   const multi=post.n>1?`<span class="stack-badge" aria-label="${post.n} 张图片">${icon('images')}${post.n}</span>`:'';
   return `<button class="art-card" type="button" data-post="${post.id}" data-work="${post.cover[0]}" aria-label="${escapeHTML(post.title)}"><span class="art-img">${coverMarkup(post.cover)}${multi}</span><span class="art-caption"><strong>${escapeHTML(post.title)}</strong><small>${escapeHTML(label(post))}</small></span></button>`;
 }
-const loadObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>{
-  if(entries.some(e=>e.isIntersecting)) append();
-},{rootMargin:'50px'}):null;
+let loadObserver=null;
+function observeMore() {
+  loadObserver?.disconnect();
+  if (!('IntersectionObserver' in window) || !thumbnailPrefetchReady || viewer.open || document.hidden) return;
+  loadObserver=new IntersectionObserver(entries=>{
+    if(entries.some(e=>e.isIntersecting)) append();
+  },{rootMargin:'0px 0px '+innerHeight+'px 0px'});
+  if(!more.hidden)loadObserver.observe(more);
+}
+window.addEventListener('resize',observeMore);
+window.addEventListener('load',observeMore,{once:true});
 const showError=()=>{more.textContent='重试加载';more.hidden=false;};
 
 let appending=false;
 async function append() {
-  if(appending||more.hidden)return;
+  if(appending||more.hidden||viewer.open||document.hidden)return;
   appending=true;
   const token=transition;
   try {
@@ -135,7 +144,8 @@ async function append() {
     }
     more.hidden=count>=screenPosts.length;
     more.textContent='加载更多';
-    if(more.hidden) loadObserver?.unobserve(more);
+    loadObserver?.unobserve(more);
+    observeMore();
   } catch {if(token===transition)showError();}
   finally {appending=false;}
 }
@@ -180,7 +190,7 @@ async function resetGrid() {
     screenPosts=items;
     status.hidden=!query;
     status.textContent=query?`${items.length} 帖`:'';
-    thumbnailObserver?.disconnect();
+    disconnectThumbnails();
     loadObserver?.unobserve(more);
     gallery.innerHTML=items.length?'':`<div class="empty">${icon(filter==='liked'?'heart':'image-off')}<p>${filter==='liked'&&!query?'点赞的作品会出现在这里':'没有找到匹配的作品'}</p></div>`;
     count=0;
@@ -189,7 +199,7 @@ async function resetGrid() {
     $('#swipe-toggle').disabled=!items.length;
     if(items.length) {
       await append();
-      if(!more.hidden) loadObserver?.observe(more);
+      observeMore();
     }
   } catch {
     if(active===transition) {status.hidden=false;status.textContent='数据暂时无法加载';showError();}
@@ -237,6 +247,96 @@ function imageCount(post) {
   prev.disabled=photoIndex===0;
   next.disabled=photoIndex>=post.n-1;
 }
+const warmedPhotos=new Map();
+let upcomingTimer, upcomingQueue=[], warmingPhoto=false;
+
+function upcomingLimit() {
+  const connection=navigator.connection;
+  if(document.hidden||navigator.onLine===false||connection?.saveData||['slow-2g','2g'].includes(connection?.effectiveType))return 0;
+  return connection?.effectiveType==='3g'?1:3;
+}
+function stopUpcomingPhotos() {
+  clearTimeout(upcomingTimer);
+  upcomingQueue=[];
+}
+function warmPhoto(work) {
+  const url=work.variants.detail[0];
+  if(warmedPhotos.has(url))return warmedPhotos.get(url).ready;
+  const image=new Image();
+  image.fetchPriority='low';
+  image.decoding='async';
+  const entry={image,ready:null};
+  entry.ready=new Promise(resolve=>{
+    const finish=success=>{
+      clearTimeout(timeout);
+      image.onload=image.onerror=null;
+      if(!success&&warmedPhotos.get(url)===entry)warmedPhotos.delete(url);
+      resolve();
+    };
+    const timeout=setTimeout(()=>{image.removeAttribute('src');finish(false);},15000);
+    image.onerror=()=>finish(false);
+    image.onload=()=>{
+      if(image.decode)image.decode().then(()=>finish(true),()=>finish(false));
+      else finish(true);
+    };
+    image.src=url;
+  });
+  warmedPhotos.set(url,entry);
+  if(warmedPhotos.size>6)warmedPhotos.delete(warmedPhotos.keys().next().value);
+  return entry.ready;
+}
+async function warmQueue() {
+  if(warmingPhoto)return;
+  warmingPhoto=true;
+  try {
+    while(upcomingQueue.length&&viewer.open&&upcomingLimit()) {
+      await warmPhoto(upcomingQueue.shift());
+    }
+  } finally {warmingPhoto=false;}
+}
+function scheduleUpcomingPhotos() {
+  stopUpcomingPhotos();
+  const limit=upcomingLimit();
+  if(!viewer.open||!limit)return;
+  const token=revision;
+  const current=viewPosts[postIndex], next=viewPosts[postIndex+1];
+  const currentPhoto=photoIndex;
+  upcomingTimer=setTimeout(async()=>{
+    const valid=()=>token===revision&&viewer.open&&upcomingLimit()>0;
+    try {
+      if(current.n>currentPhoto+1) {
+        const full=postData||await loadPost(current,'low');
+        if(!valid())return;
+        postData=full;
+        upcomingQueue=full.photos.slice(currentPhoto+1,currentPhoto+1+limit).map(id=>full.data.photos[id]);
+        warmQueue();
+      }
+      // Warm the next post's cover as well for vertical swiping.
+      if(next&&limit>1) {
+        const full=await loadPost(next,'low');
+        if(!valid())return;
+        upcomingQueue.push(full.data.photos[full.photos[0]]);
+        warmQueue();
+      }
+    } catch { /* The current artwork stays usable if speculative metadata fails. */ }
+  },180);
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) {
+    stopUpcomingPhotos();
+    disconnectThumbnails();
+    loadObserver?.disconnect();
+  } else {
+    observeThumbnails(gallery);
+    observeMore();
+    if(viewer.open&&viewer.querySelector('.slide-art[data-loaded]'))scheduleUpcomingPhotos();
+  }
+});
+navigator.connection?.addEventListener('change',()=>{
+  stopUpcomingPhotos();
+  if(viewer.open&&viewer.querySelector('.slide-art[data-loaded]'))scheduleUpcomingPhotos();
+});
+
 function fillSlide(slide,work,thumb) {
   const [x,y,w,h]=work.crop;
   slide.innerHTML='<div class="slide-area"><div class="slide-art"><img class="slide-low" alt="" draggable="false"><img class="slide-high" alt="" draggable="false"></div></div>';
@@ -256,16 +356,19 @@ function fillSlide(slide,work,thumb) {
   const token=revision;
   high.alt=work.title;
   high.fetchPriority='high';
-  high.src=work.variants.detail[0];
   const reveal=()=>{
-    if(token===revision&&viewer.open&&art.isConnected)art.setAttribute('data-loaded','');
+    if(token!==revision||!viewer.open||!art.isConnected)return;
+    art.setAttribute('data-loaded','');
+    scheduleUpcomingPhotos();
   };
+  if(!high.decode) high.addEventListener('load',reveal,{once:true});
+  high.src=work.variants.detail[0];
   if(high.decode) high.decode().then(reveal).catch(()=>{
     if(token!==revision||!viewer.open||work.variants.detail[0]===work.variants.detail[1]) return;
     high.src=work.variants.detail[1];
     return high.decode().then(reveal).catch(()=>{});
   });
-  else high.addEventListener('load',reveal,{once:true});
+
 }
 function drawPhoto(work,shortcut) {
   const post=viewPosts[postIndex];
@@ -312,6 +415,7 @@ async function changePost(position,shortcut) {
   postData=null;
   activeRendered=null;
   const token=++revision;
+  stopUpcomingPhotos();
   layoutViewer();
   const post=viewPosts[position];
   const seriesMeta=series.get(post.group);
@@ -362,6 +466,7 @@ async function changePhoto(position) {
   const post=viewPosts[postIndex];
   if(!post||position<0||position>=post.n||position===photoIndex)return;
   const token=++revision;
+  stopUpcomingPhotos();
   try {
     if(!postData){
       const full=await loadPost(post);
@@ -387,6 +492,8 @@ async function openViewer(post,opener) {
   viewTrack=document.createElement('div');
   viewTrack.className='slide-track';
   scroller.replaceChildren(viewTrack);
+  disconnectThumbnails();
+  loadObserver?.disconnect();
   viewer.showModal();
   const shortcut=$('img',opener)?.currentSrc;
   changePost(start,shortcut||undefined);
@@ -446,6 +553,10 @@ window.addEventListener('resize',()=>{
 });
 viewer.addEventListener('close',()=>{
   revision++;
+  stopUpcomingPhotos();
+  warmedPhotos.clear();
+  observeThumbnails(gallery);
+  observeMore();
   if(frame)cancelAnimationFrame(frame);
   frame=0;postIndex=-1;gesture=null;
   scroller.replaceChildren();
@@ -523,5 +634,5 @@ if(series.has(initial)||initial==='liked') {filter=initial;resetGrid();}
 else {
   observeThumbnails(gallery);
   more.hidden=seedCount>=conf.count;
-  if(!more.hidden)loadObserver?.observe(more);
+  observeMore();
 }
