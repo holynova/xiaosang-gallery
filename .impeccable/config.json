@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/gallery.js"
+        ],
+        "createdAt": "2026-11-16T12:58:32.742Z",
+        "reason": "Codex verified both reported templates. coverMarkup stores real thumbnail URLs in data-src/data-srcset and revealThumbnail assigns them before viewport entry. fillSlide assigns preview and detail src synchronously in the same call and reveals the high image only after decode. Production browser verification confirmed loaded thumbnails and detail images on 2026-11-16."
+      }
+    ]
+  }
+}
