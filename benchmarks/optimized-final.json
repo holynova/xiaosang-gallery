@@ -1,0 +1,119 @@
+{
+  "target": "http://127.0.0.1:8746/gallery/",
+  "network": {
+    "latency": 150,
+    "down": 200000,
+    "up": 93750,
+    "cpu": 4
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 2
+  },
+  "windowMs": 6500,
+  "runs": [
+    {
+      "first": {
+        "lcp": {
+          "time": 1360,
+          "url": "http://127.0.0.1:8746/gallery/media/v2/gouache-bund-s.avif",
+          "tag": "IMG"
+        },
+        "fcp": 296,
+        "shifts": [
+          {
+            "time": 1318.3999999761581,
+            "value": 0.0005701717253569189
+          }
+        ],
+        "longtasks": [],
+        "cls": 0.0005701717253569189,
+        "tbt": 0,
+        "requests": 10,
+        "bytes": 291461,
+        "images": 7,
+        "imageBytes": 227927,
+        "offscreenImages": 1,
+        "seen": 6,
+        "shown": 6,
+        "dom": 276,
+        "thumbsReady": 2514.699999988079,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 1041,
+        "transfer": 167993,
+        "resourceEnd": 1005.8000000119209
+      }
+    },
+    {
+      "first": {
+        "lcp": {
+          "time": 1364,
+          "url": "http://127.0.0.1:8746/gallery/media/v2/gouache-bund-s.avif",
+          "tag": "IMG"
+        },
+        "fcp": 280,
+        "shifts": [
+          {
+            "time": 1320.9000000357628,
+            "value": 0.0005701717253569189
+          }
+        ],
+        "longtasks": [],
+        "cls": 0.0005701717253569189,
+        "tbt": 0,
+        "requests": 10,
+        "bytes": 291461,
+        "images": 7,
+        "imageBytes": 227927,
+        "offscreenImages": 1,
+        "seen": 6,
+        "shown": 6,
+        "dom": 276,
+        "thumbsReady": 2511.2000000476837,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 1034.9000000357628,
+        "transfer": 167993,
+        "resourceEnd": 1003.4000000357628
+      }
+    },
+    {
+      "first": {
+        "lcp": {
+          "time": 1432,
+          "url": "http://127.0.0.1:8746/gallery/media/v2/gouache-bund-s.avif",
+          "tag": "IMG"
+        },
+        "fcp": 300,
+        "shifts": [
+          {
+            "time": 1391.699999988079,
+            "value": 0.0005701717253569189
+          }
+        ],
+        "longtasks": [],
+        "cls": 0.0005701717253569189,
+        "tbt": 0,
+        "requests": 10,
+        "bytes": 274702,
+        "images": 7,
+        "imageBytes": 211168,
+        "offscreenImages": 1,
+        "seen": 6,
+        "shown": 5,
+        "dom": 276,
+        "thumbsReady": 2492.100000023842,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 1032.6000000238419,
+        "transfer": 167993,
+        "resourceEnd": 1001.9000000357628
+      }
+    }
+  ]
+}

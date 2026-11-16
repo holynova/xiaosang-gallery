@@ -1,0 +1,69 @@
+woodcut	mountain	云岭山院	incoming/01.png	original	山水	俯视山间院落与层叠的远山	青绿墨层与云海留白
+woodcut	wukang	上海 · 武康大楼	incoming/travel-132.png	original	城市	街口低视点，突出楔形红砖建筑	砖红、梧桐金和暖白纸
+woodcut	kyoto	京都 · 金阁寺倒影	incoming/travel-147.png	original	园林	红枫框景，池中有金阁倒影	赭金、松绿、湖蓝
+gouache	bund	上海外滩	incoming/china/bund.png	original	地标	浦江渡轮与沿岸街区	青蓝水面与暖色街屋
+gouache	rain	雨后电车	incoming/scenes/02-rainy-city.png	original	城市	街面低视点与电车倒影	暖赭、青灰和蓝色街影
+gouache	inari	伏见稻荷	incoming/japan/fushimi-inari.png	original	地标	沿鸟居的连续框景平视	朱红与冷绿
+stamps	market	水乡早市	images/01.webp	source	农民画	水乡摊位和人群动作	明快的平涂套色
+stamps	eagle	陶鹰鼎	images/relic/relic-002.webp	source	文物印章	正面器型，保留喙与三足	深墨与暖白纸
+stamps	field	丰收打谷场	images/02.webp	source	农民画	院落高视角与收获场景	暖色谷物与平涂纹样
+crossover	goku	达摩 × 孙悟空	local:github-latest20-review/crossover-folk-gallery/images/classic_skins/01_七龙珠_达摩_孙悟空.png	original	七龙珠	角色全身，清晰识别基底轮廓	亮橙服装和冷色环境
+crossover	sakuragi	孙策 × 樱木花道	local:github-latest20-review/crossover-folk-gallery/images/classic_skins/06_灌篮高手_孙策_樱木花道.png	original	灌篮高手	全身球场造型	红色运动服与城市天光
+crossover	trunks	宫本武藏 × 特兰克斯	local:github-latest20-review/crossover-folk-gallery/images/classic_skins/02_七龙珠_宫本武藏_特兰克斯.png	original	七龙珠	横构图呈现剑士全身	服饰标志色与皮革纹理
+concept	offside	越位	dist/assets/posters/01-offside.png	original	体育科学	用传球前后的站位分解规则	浅底和高对比引导线
+concept	slipstream	赛车尾流	dist/assets/posters/03-slipstream.png	original	运动与物理	双主体前后排列的相互影响	冷暖箭头和清晰分区
+concept	montage	蒙太奇	dist/assets/posters/10-montage.png	original	电影语言	连续画格呈现镜头并置	有限色和分镜边界
+rock	riddle1	乐队摄影谜题 · 01	dist/assets/01.png	original	华语乐队	独立画面和可识别的主题物件	电影式环境光
+rock	riddle2	乐队摄影谜题 · 02	dist/assets/02.png	original	华语乐队	物件关系形成视觉谜题	一个强调色和低亮度背景
+rock	riddle3	乐队摄影谜题 · 03	dist/assets/03.png	original	华语乐队	从景别和道具给出前后两层线索	纪实颗粒和侧光
+toys	samurai	珊瑚红女武士	incoming/01.png	original	收藏公仔	全身持剑站姿	珊瑚红透明层甲与青绳
+toys	hussar	靛蓝骠骑兵	incoming/02.png	original	收藏公仔	高帽与制服完整着地	靛蓝透明件、乳白肩甲
+toys	knight	薄荷绿女骑士	incoming/03.png	original	收藏公仔	盾牌与圆肩盔甲正侧视	薄荷绿与橙色扣件
+liveaction	melina	梅琳娜	v2_20_gallery/01_melina_realhuman.png	original	艾尔登法环	贴近实拍的人物半身镜头	旧布、皮革与柔和环境光
+liveaction	judy	朱迪	cyberpunk/01_judy_realhuman.png	original	赛博朋克 2077	夜城人物摄影	冷霓虹和真实皮肤
+liveaction	zelda	塞尔达	zelda/01_zelda_realhuman.png	original	塞尔达传说	有场景背景的自然人物拍摄	自然光、布料和地貌的真实纹理
+creation	human-ai	人类与 AI	images/01-human-and-ai.jpg	source	科技	两端指尖即将相触	暖冷质感差异
+creation	newton	牛顿与苹果	images/08-newton-and-apple.jpg	source	科学	从两端伸向中间的简洁构图	古典素描和苹果色
+creation	voyager	旅行者号与地球	images/09-voyager-and-earth.jpg	source	太空	太空负空间与远景地球	深蓝背景和岩石阴影
+rubber	shanghai	上海印记	images/01_上海.png	original	世界城市	建筑剪影串成一枚章	手刻断点、单色印墨
+rubber	beijing	北京印记	images/02_北京.png	original	世界城市	地标主体与简化纹样	暖纸与墨色
+rubber	kyoto	京都印记	images/04_京都.png	original	世界城市	地标和树形的正负分层	古旧墨印与纸纤维
+city	forbidden	故宫徽章	public/badges/beijing-forbidden-city.png	original	北京	突出宫墙与檐脊剪影	六边形徽章与暖色面
+city	wall	长城徽章	public/badges/beijing-great-wall.png	original	北京	山脊与城墙折线立体铺开	石灰暖白与暗绿
+city	bridge	断桥徽章	public/badges/hangzhou-broken-bridge.png	original	杭州	桥拱与水面构成简洁轮廓	水青与金属外沿
+citypop	airbrush	经典空气喷绘	images/01/chatgpt_1788061245928.png	original	上海	外滩平视陆家嘴夏日黄昏	青蓝天空与珊瑚粉地平线
+citypop	poster	高饱和商业插画	images/02/chatgpt_1788061359913.png	original	上海	外滩与陆家嘴同机位	霓虹油墨和极细边线
+citypop	edition	粉彩丙烯黄昏	images/03/chatgpt_1788061449900.png	original	上海	保持河岸和城市轮廓	限定色与版画肌理
+wander	laundry	洗衣清洁静物	public/assets/category-still-life/01-laundry-care-still-life.png	original	静物合集	多个物件在摄影台上组合	哑光包装和统一阴影
+wander	handwash	洗手液	public/assets/daily-necessities-top20/05-hand-wash.png	original	单品	正面清楚呈现泵头与瓶身	无标签透明包装
+wander	paper	纸品静物	public/assets/category-still-life/03-paper-wipes-still-life.png	original	静物合集	纸巾包装层叠排布	素色底和纸纤维
+artstyle	impasto	厚涂实验 · 场景 A	images/scene_a_01_impasto.jpg	source	风格对照	固定场景 A 的主体分布	油画刮刀和高厚颜料
+artstyle	watercolor	水彩实验 · 场景 A	images/scene_a_02_watercolor.jpg	source	风格对照	与场景 A 使用同一构图	透明色层及水痕
+artstyle	ukiyoe	浮世绘实验 · 场景 A	images/scene_a_05_ukiyoe.jpg	source	风格对照	保持场景 A 可对比	版画边线和限定色阶
+cutaway	tower	上海中心大厦剖透	public/images/01-shanghai-tower-inference.png	original	地标建筑	切开塔身并保留整体轮廓	结构色和办公核心层
+cutaway	pearl	东方明珠剖透	public/images/02-oriental-pearl-inference.png	original	地标建筑	沿中轴展示球体与塔柱	外壳色与功能分区
+cutaway	museum	中华艺术宫剖透	public/images/03-china-art-museum-inference.png	original	公共建筑	剖开叠层体量与内厅	朱红外壳和浅色切面
+print	cmyk	CMYK 套印 · 宫殿	assets/cmyk-palace.png	original	套印	固定宫殿场景逐版分色	青品黄黑四色网点
+print	etch	蚀刻 · 人物	assets/etch-figures.png	original	凹版	保持人物轮廓与背景疏密	细蚀刻线与纸底
+print	litho	石版 · 宫殿	assets/litho-palace.png	original	平版	宫殿场景的线面关系	石版颗粒和墨层
+gamestyle	ac	动森风格转译	public/images/animal-crossing.png	original	场景对照	保留城市地点构图	柔和彩度和团块体积
+gamestyle	cyber	赛博朋克风格转译	public/images/cyberpunk-2077.png	original	场景对照	保留街道走向与体量	高反差霓虹与潮湿路面
+gamestyle	elden	艾尔登法环风格转译	public/images/elden-ring.png	original	场景对照	保留远近结构，强化薄雾	低饱和植被与暗金天光
+textbook	spark	七根火柴 · 重绘	converted/高清课本插图_七根火柴_01_photo.png	original	课文插画	保持原叙事情节与角色关系	重绘色层和温和环境光
+textbook	lion	两只小狮子 · 重绘	converted/高清课本插图_两只小狮子_01_photo.png	original	课文插画	清楚呈现两只狮子的互动	柔和质感与明确轮廓
+textbook	whole	全神贯注 · 重绘	converted/高清课本插图_全神贯注_01_photo.png	original	课文插画	通过姿态突出专注的动作	保留画面明暗和旧版构图
+motorcycle	01	张艺谋 · 镜头主题	https://director-motorcycle-cinema.xiaosang.cc/assets/images/director01.webp	source	电影摄影	机车、人物与环境同框	对比鲜明的颜色秩序
+motorcycle	02	王家卫 · 镜头主题	https://director-motorcycle-cinema.xiaosang.cc/assets/images/director02.webp	source	电影摄影	带有纵深和遮挡的街头机位	暖冷霓虹与胶片颗粒
+motorcycle	03	李安 · 镜头主题	https://director-motorcycle-cinema.xiaosang.cc/assets/images/director03.webp	source	电影摄影	让环境和人物动作保持节制	自然光与细微的材质差异
+ai	experiment1	戴珍珠耳环的少女	public/images/image_1775059716066_1.jpg	source	图像实验	构建有主次的完整画面	按参考统一表面与色彩
+ai	experiment2	机甲与雾中村庄	public/images/image_1775059715989_2.jpg	source	图像实验	视角围绕可辨识主体	统一光向与影深
+ai	experiment3	戴珍珠耳环的少女 · 饰框变体	public/images/image_1775059716028_3.jpg	source	图像实验	组合前景与主体	材质细节服从轮廓
+relic	001	彩绘鹳鱼石斧图陶缸	assets/images/ww001.webp	source	陶瓷器	器身与主纹饰正面展示	原色陶土和中性背景
+relic	002	陶鹰鼎	assets/images/ww002.webp	source	陶瓷器	展示背负器身的鹰形和足	朴素陶色和柔光
+relic	003	后母戊鼎	assets/images/ww003.webp	source	青铜器	以轮廓可辨的角度陈列	真实材料和中性白平衡
+jade	pikachu	皮卡丘 · 玉雕牌	img/baokemeng-1-pikaqiu.webp	source	宝可梦	主形居中，四边留清晰牌边	墨玉、描金和浮雕线
+jade	nezha	哪吒 · 玉雕牌	img/fengshen-2-nezha.webp	source	封神	用衣纹和火尖轮廓建立线面	暖玉、阴刻与哑金
+jade	malenia	玛莲妮亚 · 玉雕牌	img/eldenring-1-malianniya.webp	source	艾尔登法环	帽盔与披风构成主浮雕	墨绿玉与磨砂高光
+podcast	apple	苹果简史 · 硅谷神话	https://xiaosang.cc/podcast-atlas/static/88321369e3c2b2a9.webp	source	播客图解	用具体场景建立人物和时代背景	同组分镜使用一致的色面
+podcast	latiao	中国辣条江湖	https://xiaosang.cc/podcast-atlas/static/27c4b0bd86a7734e.webp	source	播客图解	用产品和街头景象交代主线	暖调标题色与朴素日常物件
+podcast	logistics	快递江湖三十年	https://xiaosang.cc/podcast-atlas/static/f452956dac2faa1b.webp	source	播客图解	以包裹和配送场景建立叙事顺序	统一线条和信息颜色

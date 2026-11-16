@@ -1,0 +1,1 @@
+registerFeed("gamestyle",[["gamestyle-61ca1cc7e8bc","gamestyle","静安寺","静安寺",16,0,"gamestyle-ac",384,682,585,1040],["gamestyle-ed83a64f4953","gamestyle","京都","京都",16,0,"gamestyle-c19ed70b8d94c",384,640,624,1040],["gamestyle-1ae6091c32d8","gamestyle","时代广场","时代广场",16,0,"gamestyle-aab77c717b368",384,216,642,361]]);

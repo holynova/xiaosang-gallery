@@ -1,0 +1,9 @@
+/media/*
+  Cache-Control: public, max-age=86400, s-maxage=604800
+
+/originals/*
+  Cache-Control: public, max-age=3600, s-maxage=604800
+  Content-Disposition: attachment
+
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate

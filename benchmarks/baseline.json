@@ -1,0 +1,104 @@
+{
+  "target": "http://127.0.0.1:8746/gallery-baseline/",
+  "network": {
+    "latency": 150,
+    "down": 200000,
+    "up": 93750,
+    "cpu": 4
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 2
+  },
+  "windowMs": 6500,
+  "runs": [
+    {
+      "first": {
+        "lcp": {
+          "time": 4412,
+          "url": "http://127.0.0.1:8746/gallery-baseline/media/gouache-bund-m.webp",
+          "tag": "IMG"
+        },
+        "fcp": 564,
+        "shifts": [],
+        "longtasks": [],
+        "cls": 0,
+        "tbt": 0,
+        "requests": 20,
+        "bytes": 1152788,
+        "images": 15,
+        "imageBytes": 1062918,
+        "offscreenImages": 9,
+        "seen": 6,
+        "shown": 6,
+        "dom": 267,
+        "thumbsReady": 6102,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 2043.300000011921,
+        "transfer": 286092,
+        "resourceEnd": 1951.699999988079
+      }
+    },
+    {
+      "first": {
+        "lcp": {
+          "time": 4416,
+          "url": "http://127.0.0.1:8746/gallery-baseline/media/gouache-bund-m.webp",
+          "tag": "IMG"
+        },
+        "fcp": 548,
+        "shifts": [],
+        "longtasks": [],
+        "cls": 0,
+        "tbt": 0,
+        "requests": 20,
+        "bytes": 1152788,
+        "images": 15,
+        "imageBytes": 1062918,
+        "offscreenImages": 9,
+        "seen": 6,
+        "shown": 6,
+        "dom": 267,
+        "thumbsReady": 6092.5,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 2045.3999999761581,
+        "transfer": 286092,
+        "resourceEnd": 1948.3999999761581
+      }
+    },
+    {
+      "first": {
+        "lcp": {
+          "time": 4416,
+          "url": "http://127.0.0.1:8746/gallery-baseline/media/gouache-bund-m.webp",
+          "tag": "IMG"
+        },
+        "fcp": 568,
+        "shifts": [],
+        "longtasks": [],
+        "cls": 0,
+        "tbt": 0,
+        "requests": 20,
+        "bytes": 1152788,
+        "images": 15,
+        "imageBytes": 1062918,
+        "offscreenImages": 9,
+        "seen": 6,
+        "shown": 6,
+        "dom": 267,
+        "thumbsReady": 6084.599999964237,
+        "detailRequests": 0
+      },
+      "detail": {
+        "observedReady": 2040,
+        "transfer": 286092,
+        "resourceEnd": 1937.5
+      }
+    }
+  ]
+}

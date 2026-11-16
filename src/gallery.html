@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>xiaosang AI图集</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="gallery.css">
+<!-- IMAGE_PRELOAD -->
+<!-- SITE_ANALYTICS -->
+<script defer src="vendor/lucide.js"></script>
+<script defer src="gallery.js"></script>
+</head>
+<body>
+<svg id="icons" class="symbol-bank" aria-hidden="true"></svg>
+<header class="site-header" id="site-header">
+  <div class="page-width header-inner">
+    <div class="meta-row">
+      <a id="home" class="brand" href="./" aria-label="xiaosang AI图集首页"><span class="brand-icon"></span><span>xiaosang AI图集</span></a>
+      <div class="top-actions">
+        <a class="overview-link" href="overview.html">总览</a>
+        <button id="search-toggle" class="icon-button" type="button" aria-label="搜索作品" aria-controls="search-row" aria-expanded="false"></button>
+        <details class="tools" id="site-tools">
+          <summary>生成方法</summary>
+          <div class="tools-popup">
+            <button type="button" data-prompt="collection">Prompt 模板</button>
+            <a id="site-skills" href="skills/index.html">查看 Skill</a>
+            <a href="https://github.com/holynova/xiaosang-gallery">GitHub</a>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="collection-row">
+      <h1><button id="series-toggle" type="button" aria-haspopup="dialog"><span id="series-title">全部作品</span></button></h1>
+      <button class="swipe-toggle" id="swipe-toggle" type="button"></button>
+    </div>
+    <div class="search-row" id="search-row" hidden>
+      <label class="search-input" id="search-label"><input id="search" type="search" aria-label="搜索作品" placeholder="搜索作品、题材或系列" autocomplete="off"></label>
+    </div>
+  </div>
+</header>
+<main class="page-width">
+  <div id="category-row" class="category-row" hidden><label for="category-select">分组</label><select id="category-select" aria-label="筛选分组"></select></div>
+  <div id="results-status" class="results-status" role="status" hidden></div>
+  <div class="masonry" id="masonry" aria-label="作品"><!-- SEED_POSTS --></div>
+  <!-- CRITICAL_GRID -->
+  <button class="more-button" id="load-more" type="button">加载更多</button>
+</main>
+<dialog class="sheet" id="series-dialog" aria-labelledby="series-dialog-title">
+  <div class="sheet-inner">
+    <div class="sheet-heading"><h2 id="series-dialog-title">切换系列</h2><button class="icon-button" data-close="series-dialog" aria-label="关闭系列选择"></button></div>
+    <label class="search-input" id="series-search-label"><input type="search" id="series-search" aria-label="搜索系列" placeholder="搜索系列" autocomplete="off"></label>
+    <div id="series-list" class="series-list"></div>
+  </div>
+</dialog>
+<dialog class="viewer" id="viewer" aria-label="作品浏览">
+  <div id="slide-scroller" class="slide-scroller" tabindex="0" aria-label="上下滑动切换帖子，左右滑动查看组内图片，轻点图像切换工具"></div>
+  <div class="viewer-top">
+    <button class="icon-button" data-close="viewer" aria-label="返回画廊" autofocus></button>
+    <div class="viewer-pagination"><button id="photo-prev" type="button" class="icon-button" aria-label="上一张图" hidden></button><span id="viewer-index"></span><button id="photo-next" type="button" class="icon-button" aria-label="下一张图" hidden></button></div>
+    <details class="tools" id="viewer-tools">
+      <summary class="icon-button" aria-label="更多作品操作"></summary>
+      <div class="tools-popup">
+        <button type="button" data-prompt="work">Prompt 模板</button>
+        <a id="viewer-skill" href="skills/index.html">查看 Skill</a>
+        <a id="viewer-source" href="#" target="_blank" rel="noopener">打开原系列</a>
+      </div>
+    </details>
+  </div>
+  <div class="viewer-bottom">
+    <div class="viewer-caption">
+      <p id="viewer-series"></p><h2 id="viewer-title" aria-live="polite"></h2>
+    </div>
+    <button class="icon-button" id="viewer-like" type="button" aria-pressed="false" aria-label="点赞"></button>
+    <a class="icon-button" id="viewer-download" download aria-label="下载原图"></a>
+  </div>
+</dialog>
+<dialog class="sheet prompt-dialog" id="prompt-dialog" aria-labelledby="prompt-dialog-title">
+  <div class="sheet-inner">
+    <div class="sheet-heading">
+      <div><p id="prompt-series" class="muted"></p><h2 id="prompt-dialog-title">Prompt 模板</h2></div>
+      <button class="icon-button" data-close="prompt-dialog" aria-label="关闭模板"></button>
+    </div>
+    <div id="prompt-content"></div>
+  </div>
+</dialog>
+<!-- CATALOG_CONFIG -->
+</body>
+</html>

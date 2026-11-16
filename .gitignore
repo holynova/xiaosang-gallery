@@ -1,0 +1,10 @@
+/media/
+/originals/
+/skills/packages/*/assets/
+/screenshots/
+__pycache__/
+/.migration/
+/dist/
+/node_modules/
+/.wrangler/
+/.release-*/
