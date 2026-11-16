@@ -63,6 +63,16 @@ def pack_detail(work):
 def render(tag):
     return html.escape(str(tag),quote=True)
 
+def write_frontend_asset(name, content):
+    if settings.cloudflare_static:
+        path=Path(name)
+        digest=hashlib.sha256(content.encode()).hexdigest()[:16]
+        name=f'assets/bundles/{path.stem}.{digest}{path.suffix}'
+    target=out/name
+    target.parent.mkdir(parents=True,exist_ok=True)
+    target.write_text(content)
+    return name
+
 def short_id(text):
     return hashlib.sha1(text.encode()).hexdigest()[:12]
 
@@ -133,12 +143,10 @@ def cover_html(cover, mode):
     eager=mode in ['hero','eager']
     attr='src' if eager else 'data-src'
     size='(max-width: 720px) 46vw, (max-width: 1149px) 30vw, 250px'
-    lcp=' fetchpriority="high"' if mode=='hero' else ''
+    image_hint=' fetchpriority="high"' if mode=='hero' else ' decoding="async"'
     aset=f'{s_a} {sw}w, {m_a} {mw}w' if sw!=mw else s_a
     wset=f'{s_w} {sw}w, {m_w} {mw}w' if sw!=mw and s_w!=m_w else s_w
-    if not eager and mode=='lazy':
-        return f'<picture><source type="image/avif"><img width="{sw}" height="{sh}" decoding="async" data-post-cover alt=""></picture>'
-    return f'<picture><source type="image/avif" {attr}set="{aset}" sizes="{size}"><img {attr}="{s_w}" {attr}set="{wset}" sizes="{size}" width="{sw}" height="{sh}" decoding="async" alt=""{lcp}></picture>'
+    return f'<picture><source type="image/avif" {attr}set="{aset}" sizes="{size}"><img {attr}="{s_w}" {attr}set="{wset}" sizes="{size}" width="{sw}" height="{sh}" alt=""{image_hint}></picture>'
 smeta={s['id']:s for s in meta}
 seed_html=[]
 for i,post in enumerate(seeds):
@@ -148,8 +156,8 @@ for i,post in enumerate(seeds):
     priority='hero' if i==0 else 'eager' if i==1 else 'lazy'
     seed_html.append(f'<button type="button" class="art-card" data-post="{post["id"]}" data-work="{post["cover"][0]}" aria-label="{render(post["title"])}"><span class="art-img">{cover_html(post["cover"],priority)}{multi}</span><span class="art-caption"><strong>{render(post["title"])}</strong><small>{render(label)}</small></span></button>')
 
-(out/'gallery.css').write_text((root/'src/gallery.css').read_text())
-(out/'gallery.js').write_text((root/'src/gallery.js').read_text())
+styles=write_frontend_asset('gallery.css',(root/'src/gallery.css').read_text())
+runtime=write_frontend_asset('gallery.js',(root/'src/gallery.js').read_text())
 (data/'index.js').write_text('registerIndex('+dump([pack(p) for p in feed])+');\n')
 (data/'search.js').write_text('registerSearch('+dump(search_entries)+');\n')
 overview=[]
@@ -157,7 +165,7 @@ for i,series in enumerate(meta):
     avatar=cover_html(series['cover'],'eager' if i<4 else 'overview')
     avatar=avatar.replace('data-src','src').replace('decoding="async"','decoding="async" loading="lazy"') if i>=4 else avatar
     overview.append(f'<a class="overview-card" href="index.html?series={series["id"]}"><span class="overview-image">{avatar}</span><span class="overview-label"><strong>{render(series["title"])}</strong><small>{series["works"]} 张 · {series["posts"]} 帖</small></span></a>')
-(out/'overview.html').write_text(f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>系列总览 · xiaosang AI图集</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="gallery.css"></head><body><header class="site-header"><div class="page-width overview-top"><a href="index.html">xiaosang AI图集</a></div></header><main class="page-width overview-page"><div class="overview-heading"><h1>系列总览</h1><p>{len(meta)} 个系列 · {sum(s['works'] for s in meta)} 张作品</p></div><div class="overview-grid">{''.join(overview)}</div><footer class="release-meta"><a href="{repo_url}">GitHub</a><span>v{version}</span></footer></main></body></html>''')
+(out/'overview.html').write_text(f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>系列总览 · xiaosang AI图集</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="{styles}"></head><body><header class="site-header"><div class="page-width overview-top"><a href="./">xiaosang AI图集</a></div></header><main class="page-width overview-page"><div class="overview-heading"><h1>系列总览</h1><p>{len(meta)} 个系列 · {sum(s['works'] for s in meta)} 张作品</p></div><div class="overview-grid">{''.join(overview)}</div><footer class="release-meta"><a href="{repo_url}">GitHub</a><span>v{version}</span></footer></main></body></html>''')
 
 highlight=(seeds[0]['cover'] if seeds else None)
 preload=''
@@ -169,15 +177,31 @@ if highlight:
 lean_meta=[{**{k:v for k,v in x.items() if k not in ('template','cover')},'cover':pack_cover(x['cover'])} for x in meta]
 config=f'<script type="application/json" id="catalog-config">{dump({"meta":lean_meta,"seeds":[pack(p) for p in seeds],"count":len(feed),"singleWebpThumb":settings.cloudflare_static,"previews":[pack_detail(cover_details[p["cover"][0]]) for p in seeds]})}</script>'
 shell=(root/'src/gallery.html').read_text()
+symbols=(root/'vendor/lucide.js').read_text().split('`')[1]
+shell=shell.replace('<!-- GALLERY_ICONS -->',symbols)
+shell=shell.replace('<!-- GALLERY_STYLES -->',styles)
+shell=shell.replace('<!-- GALLERY_SCRIPT -->',runtime)
 shell=shell.replace('<!-- IMAGE_PRELOAD -->',preload)
-shell=shell.replace('<!-- SITE_ANALYTICS -->','<script async src="https://cloud.umami.is/script.js" data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4" data-domains="xiaosang.cc"></script>' if settings.cloudflare_static else '')
+shell=shell.replace('<!-- SITE_ANALYTICS -->','''<script>
+if (location.hostname === 'xiaosang.cc') {
+  window.addEventListener('load', () => {
+    const tracker = document.createElement('script');
+    tracker.src = 'https://cloud.umami.is/script.js';
+    tracker.dataset.websiteId = 'e01c9f78-4607-4e60-b01c-77c8190b12b4';
+    tracker.dataset.domains = 'xiaosang.cc';
+    document.head.append(tracker);
+  }, {once: true});
+}
+</script>''' if settings.cloudflare_static else '')
 shell=shell.replace('<!-- SEED_POSTS -->',''.join(seed_html))
 shell=shell.replace('<!-- CATALOG_CONFIG -->',config)
 shell=shell.replace('<!-- CRITICAL_GRID -->','<script>'+(root/'src/masonry.js').read_text()+'</script>')
 (out/'index.html').write_text(shell)
 if settings.cloudflare_static:
-    for f in ('favicon.svg','vendor/lucide.js','vendor/lucide.LICENSE','skills/index.html','skills/skills.css','skills/skills.js'):
+    for f in ('favicon.svg','vendor/lucide.js','vendor/lucide.LICENSE','skills/skills.css','skills/skills.js'):
         release_file(f)
+    skills=(root/'skills/index.html').read_text()
+    (out/'skills/index.html').write_text(skills.replace('../gallery.css',f'../{styles}'))
     for p in profiles:
         package=Path('skills/packages')/('gallery-'+p['id'])
         release_file(package/'SKILL.md')

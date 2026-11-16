@@ -1,4 +1,4 @@
-/* global lucideSymbols, arrangeGrid */
+/* global arrangeGrid, observeThumbnails, thumbnailObserver */
 const $ = (s, root = document) => root.querySelector(s);
 const conf = JSON.parse($('#catalog-config').textContent);
 conf.seeds=conf.seeds.map(unpack);
@@ -31,16 +31,19 @@ const $title=$('#series-title');
 
 function unpackCover([work,w,h,mw,mh]) {
   const prefix='media/v2/'+work;
-  return [work,prefix+'-s.avif',prefix+'-s.webp',w,h,prefix+'-m.avif',prefix+'-m.webp',mw,mh];
+  const useMedium=w!==mw||h!==mh;
+  return [work,prefix+'-s.avif',prefix+'-s.webp',w,h,
+    prefix+(useMedium?'-m.avif':'-s.avif'),
+    prefix+(conf.singleWebpThumb||!useMedium?'-s.webp':'-m.webp'),mw,mh];
 }
 function unpack([id,group,title,cat,n,bucket,work,w,h,mw,mh]) {
   return {id,group,title,cat,n,bucket,cover:unpackCover([work,w,h,mw,mh])};
 }
-function unpackDetail([id,title,width,height,crop,quality,original]) {
+function unpackDetail([id,title,width,height,crop,quality,original,avif=true]) {
   const prefix='media/v2/'+id;
   return {id,title,width,height,crop,quality,original,variants:{
     s:[prefix+'-s.avif',prefix+'-s.webp'],
-    detail:[prefix+'-detail.avif',prefix+'-detail.webp'],
+    detail:[prefix+(avif?'-detail.avif':'-detail.webp'),prefix+'-detail.webp'],
   }};
 }
 window.registerBucket=(key,data)=>buckets.set(key,data);
@@ -82,11 +85,6 @@ async function loadFeed(id) {
   return feeds.get(id);
 }
 
-$('#icons').innerHTML=lucideSymbols;
-$('#home').innerHTML=`<span class="brand-icon">${icon('images')}</span><span>xiaosang AI图集</span>`;
-$('#search-toggle').innerHTML=icon('search');
-$('#series-toggle').insertAdjacentHTML('beforeend',icon('chevron-down'));
-$('#swipe-toggle').innerHTML=icon('gallery-vertical')+'<span>滑览</span>';
 for(const id of ['#search-label','#series-search-label']) $(id).insertAdjacentHTML('afterbegin',icon('search'));
 for(const btn of document.querySelectorAll('[data-close]')) btn.innerHTML=icon(btn.dataset.close==='viewer'?'arrow-left':'x');
 $('#viewer-tools summary').innerHTML=icon('ellipsis');
@@ -100,7 +98,7 @@ function coverMarkup(cover,small=false) {
   const [id,sa,sw,w,h,ma,mw,w2]=cover;
   const sizes=small?'48px':'(max-width: 720px) 46vw, (max-width: 1149px) 30vw, 250px';
   const avif=small||w===w2?sa:`${sa} ${w}w, ${ma} ${w2}w`;
-  const webp=small||w===w2?sw:`${sw} ${w}w, ${mw} ${w2}w`;
+  const webp=small||w===w2||sw===mw?sw:`${sw} ${w}w, ${mw} ${w2}w`;
   const attrs=small?'src':'data-src';
   return `<picture><source type="image/avif" ${attrs}set="${avif}" sizes="${sizes}"><img ${attrs}="${sw}" ${attrs}set="${webp}" sizes="${sizes}" width="${w}" height="${h}" alt="" decoding="async"${small?' loading="lazy"':''}></picture>`;
 }
@@ -111,34 +109,6 @@ function label(post) {
 function card(post) {
   const multi=post.n>1?`<span class="stack-badge" aria-label="${post.n} 张图片">${icon('images')}${post.n}</span>`:'';
   return `<button class="art-card" type="button" data-post="${post.id}" data-work="${post.cover[0]}" aria-label="${escapeHTML(post.title)}"><span class="art-img">${coverMarkup(post.cover)}${multi}</span><span class="art-caption"><strong>${escapeHTML(post.title)}</strong><small>${escapeHTML(label(post))}</small></span></button>`;
-}
-function revealImage(img) {
-  const source=$('source',img.closest('picture'));
-  if(img.hasAttribute('data-post-cover')){
-    const post=conf.seeds.find(p=>p.id===img.closest('[data-post]').dataset.post);
-    const [id,sa,sw,w,h,ma,mw,w2]=post.cover;
-    const sizes='(max-width: 720px) 46vw, (max-width: 1149px) 30vw, 250px';
-    source.sizes=img.sizes=sizes;
-    source.srcset=w===w2?sa:`${sa} ${w}w, ${ma} ${w2}w`;
-    img.srcset=w===w2?sw:`${sw} ${w}w, ${mw} ${w2}w`;
-    img.src=sw;
-    img.removeAttribute('data-post-cover');
-    return;
-  }
-  if(source.dataset.srcset) {source.srcset=source.dataset.srcset;delete source.dataset.srcset;}
-  if(img.dataset.srcset) {img.srcset=img.dataset.srcset;delete img.dataset.srcset;}
-  if(img.dataset.src) {img.src=img.dataset.src;delete img.dataset.src;}
-}
-const io='IntersectionObserver' in window ? new IntersectionObserver(items=>{
-  for(const item of items) if(item.isIntersecting){
-    io.unobserve(item.target); revealImage(item.target);
-  }
-},{rootMargin:'64px'}) : null;
-function registerThumbs() {
-  for(const img of gallery.querySelectorAll('img[data-src],img[data-post-cover]')) {
-    if (!io) revealImage(img);
-    else io.observe(img);
-  }
 }
 const loadObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>{
   if(entries.some(e=>e.isIntersecting)) append();
@@ -159,9 +129,9 @@ async function append() {
     const next=screenPosts.slice(count,count+batch);
     if(next.length){
       gallery.insertAdjacentHTML('beforeend',next.map(card).join(''));
+      arrangeGrid(gallery,count);
       count+=next.length;
-      arrangeGrid(gallery);
-      registerThumbs();
+      observeThumbnails(gallery);
     }
     more.hidden=count>=screenPosts.length;
     more.textContent='加载更多';
@@ -210,7 +180,7 @@ async function resetGrid() {
     screenPosts=items;
     status.hidden=!query;
     status.textContent=query?`${items.length} 帖`:'';
-    io?.disconnect();
+    thumbnailObserver?.disconnect();
     loadObserver?.unobserve(more);
     gallery.innerHTML=items.length?'':`<div class="empty">${icon(filter==='liked'?'heart':'image-off')}<p>${filter==='liked'&&!query?'点赞的作品会出现在这里':'没有找到匹配的作品'}</p></div>`;
     count=0;
@@ -291,7 +261,7 @@ function fillSlide(slide,work,thumb) {
     if(token===revision&&viewer.open&&art.isConnected)art.setAttribute('data-loaded','');
   };
   if(high.decode) high.decode().then(reveal).catch(()=>{
-    if(token!==revision||!viewer.open) return;
+    if(token!==revision||!viewer.open||work.variants.detail[0]===work.variants.detail[1]) return;
     high.src=work.variants.detail[1];
     return high.decode().then(reveal).catch(()=>{});
   });
@@ -358,11 +328,23 @@ async function changePost(position,shortcut) {
   const cover=previews.get(post.cover[0]);
   if(cover)drawPhoto(cover,shortcut);
   if(!cover){
+    const [,avif,webp,width,height]=post.cover;
+    const slide=$('[data-slide="'+position+'"]',viewTrack);
+    slide.innerHTML='<div class="slide-area"><div class="slide-art"></div></div>';
+    const art=$('.slide-art',slide);
+    art.style.setProperty('--ratio',width/height);
+    const image=new Image();
+    image.className='slide-low';
+    image.alt='';
+    image.draggable=false;
+    image.onerror=()=>{image.onerror=null;image.src=webp;};
+    image.src=shortcut||avif;
+    art.append(image);
     try {
       const full=await loadPost(post);
       if(token!==revision||!viewer.open)return;
       postData=full;
-      drawPhoto(full.data.photos[full.photos[0]],shortcut);
+      drawPhoto(full.data.photos[full.photos[0]],image.currentSrc||shortcut);
     } catch {
       if(token===revision) $('#viewer-title').textContent='图片暂时无法加载';
     }
@@ -539,7 +521,7 @@ more.onclick=()=>more.textContent==='重试加载'?resetGrid():append();
 const initial=new URL(location).searchParams.get('series');
 if(series.has(initial)||initial==='liked') {filter=initial;resetGrid();}
 else {
-  registerThumbs();
+  observeThumbnails(gallery);
   more.hidden=seedCount>=conf.count;
   if(!more.hidden)loadObserver?.observe(more);
 }

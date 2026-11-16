@@ -8,7 +8,7 @@ A gallery of 3,666 images across 22 collections. Browse grouped posts, swipe thr
 
 ## 在线体验 / Live demo
 
-- [Cloudflare Demo](https://xiaosang.cc/xiaosang-gallery/)（部署待核验）
+- [Cloudflare Demo](https://xiaosang.cc/xiaosang-gallery/)
 - [GitHub Repo](https://github.com/holynova/xiaosang-gallery)
 
 <img src="assets/qr.png" width="160" alt="扫描二维码打开 xiaosang AI图集">

@@ -5,21 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>xiaosang AI图集</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="gallery.css">
 <!-- IMAGE_PRELOAD -->
-<!-- SITE_ANALYTICS -->
-<script defer src="vendor/lucide.js"></script>
-<script defer src="gallery.js"></script>
+<link rel="stylesheet" href="<!-- GALLERY_STYLES -->">
+<script defer src="<!-- GALLERY_SCRIPT -->"></script>
 </head>
 <body>
-<svg id="icons" class="symbol-bank" aria-hidden="true"></svg>
+<svg class="symbol-bank" aria-hidden="true"><!-- GALLERY_ICONS --></svg>
 <header class="site-header" id="site-header">
   <div class="page-width header-inner">
     <div class="meta-row">
-      <a id="home" class="brand" href="./" aria-label="xiaosang AI图集首页"><span class="brand-icon"></span><span>xiaosang AI图集</span></a>
+      <a id="home" class="brand" href="./" aria-label="xiaosang AI图集首页"><span class="brand-icon"><svg class="icon" aria-hidden="true"><use href="#lucide-images"></use></svg></span><span>xiaosang AI图集</span></a>
       <div class="top-actions">
         <a class="overview-link" href="overview.html">总览</a>
-        <button id="search-toggle" class="icon-button" type="button" aria-label="搜索作品" aria-controls="search-row" aria-expanded="false"></button>
+        <button id="search-toggle" class="icon-button" type="button" aria-label="搜索作品" aria-controls="search-row" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#lucide-search"></use></svg></button>
         <details class="tools" id="site-tools">
           <summary>生成方法</summary>
           <div class="tools-popup">
@@ -31,8 +29,8 @@
       </div>
     </div>
     <div class="collection-row">
-      <h1><button id="series-toggle" type="button" aria-haspopup="dialog"><span id="series-title">全部作品</span></button></h1>
-      <button class="swipe-toggle" id="swipe-toggle" type="button"></button>
+      <h1><button id="series-toggle" type="button" aria-haspopup="dialog"><span id="series-title">全部作品</span><svg class="icon" aria-hidden="true"><use href="#lucide-chevron-down"></use></svg></button></h1>
+      <button class="swipe-toggle" id="swipe-toggle" type="button"><svg class="icon" aria-hidden="true"><use href="#lucide-gallery-vertical"></use></svg><span>滑览</span></button>
     </div>
     <div class="search-row" id="search-row" hidden>
       <label class="search-input" id="search-label"><input id="search" type="search" aria-label="搜索作品" placeholder="搜索作品、题材或系列" autocomplete="off"></label>
@@ -85,5 +83,6 @@
   </div>
 </dialog>
 <!-- CATALOG_CONFIG -->
+<!-- SITE_ANALYTICS -->
 </body>
 </html>

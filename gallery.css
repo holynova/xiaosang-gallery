@@ -171,3 +171,5 @@ main.page-width { padding-top:9px; padding-bottom:30px; }
 .overview-label { display:grid; gap:3px; padding:9px; }
 .overview-label small { color:var(--quiet);font-size:11px; }
 @media(min-width:721px) { .overview-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+
+.release-meta { display:flex; justify-content:space-between; gap:12px; padding:16px 2px 0; color:var(--quiet); font-size:12px; }
