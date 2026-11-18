@@ -1,24 +1,24 @@
+<p align="right"><a href="README.en.md">English</a></p>
+
 <p align="center">
   <img src="./assets/readme/hero.svg" width="100%" alt="xiaosang AI图集 — 22 个系列、3,666 张作品、1,488 个帖子汇于一处">
 </p>
 
 <p align="center">
-  <a href="https://xiaosang.cc/xiaosang-gallery/">▶ 在线浏览 Browse Online</a>
+  <a href="https://xiaosang.cc/xiaosang-gallery/">▶ 在线浏览</a>
   ·
   <a href="https://github.com/holynova/xiaosang-gallery">GitHub 仓库</a>
 </p>
 
 xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：22 个系列、3,666 张图片、1,488 个帖子。按分组筛选、全屏滑览、本地点赞、单图下载，每个系列还附可复制的 Prompt 模板和生成 Skill。
 
-xiaosang Gallery gathers the portfolio's scattered image projects into one gallery: 22 collections, 3,666 images, 1,488 posts. Filter by group, swipe through full-screen artwork, save local favorites, download individual files — each collection also ships a copyable prompt template and a generation skill.
-
-## 截图 / Screenshots
+## 截图
 
 <p align="center">
   <img src="./assets/readme/screenshot-mobile.png" width="300" alt="手机端瀑布流：纸上旅行、山河入版、农民画与印章、英雄联名概念等帖子">
 </p>
 
-## 功能 / Features
+## 功能
 
 - **22 个系列**：按源站项目归类，系列标题下可筛选分组；系列总览见站内 `overview.html`。
 - **帖子浏览**：成套作品按帖组织，每帖至多 20 张；打开帖子后上下切换帖子、左右切换组内图片（323 个多图帖）。
@@ -28,7 +28,7 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 - **Prompt 模板与 Skill**：每个系列一页生成说明（`skills/`，22 个 Skill 包），含可复制的 Prompt 模板。
 - **按需加载**：首页先生成覆盖首屏的静态帖子，帖子索引、分系列列表、搜索、组内图片数据均分别按需加载。
 
-## 系列 / Collections
+## 系列
 
 | 系列 | 图片 | 帖子 | 系列 | 图片 | 帖子 |
 | --- | ---: | ---: | --- | ---: | ---: |
@@ -46,7 +46,7 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 
 以源站作品数据为准；页面图标、截图、缩略图衍生件不重复入库。播客漫画不在此 22 个系列内。
 
-## 本地运行 / Run Locally
+## 本地运行
 
 直接打开 `index.html` 即可浏览；或起静态服务器：
 
@@ -67,7 +67,7 @@ npm run preview   # 预览 dist/
 
 [迁移清单与本地素材要求](docs/catalog.md) · [加载基准与优化](PERFORMANCE.md)
 
-## 技术 / Tech
+## 技术
 
 - 零框架：原生 HTML/CSS/JavaScript + 瀑布流布局（`src/masonry.js`）。
 - 数据分片：每系列的图片数据拆成多个 `data/<系列>-N.js`，按需加载；原始或发布图 5.64 GiB，AVIF/WebP 展示层 2.07 GiB。
@@ -82,13 +82,3 @@ data/               分系列图片数据（按需加载）
 scripts/            迁移、建站、Skill 生成、性能测量
 skills/             22 个系列的生成 Skill 包
 ```
-
-## English
-
-**xiaosang Gallery** is a single gallery for the portfolio's image projects — 22 collections, 3,666 images, 1,488 posts, counted from the source sites (page icons, screenshots, and thumbnail derivatives are not double-counted; the podcast-comics series is excluded).
-
-- **Browse**: collections group posts; open a post to swipe between posts vertically and images horizontally (323 multi-image posts, max 20 images each).
-- **Favorites & downloads**: likes are saved per image locally; originals are fetched only when you click download (1,532 verified originals, 2,134 files kept byte-identical to the source release).
-- **Reusable prompts**: each collection ships a generation skill (`skills/`, 22 packages) with a copyable prompt template.
-- **Performance**: the homepage pre-renders static above-the-fold posts; indexes, lists, search, and image data load on demand. See [PERFORMANCE.md](PERFORMANCE.md) for benchmarks.
-- **Run it**: open `index.html`, or `python3 -m http.server 8780`. Zero frameworks — vanilla HTML/CSS/JS with a masonry layout.
