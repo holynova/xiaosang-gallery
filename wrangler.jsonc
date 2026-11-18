@@ -1,11 +1,12 @@
 {
-  "$schema": "https://unpkg.com/wrangler@4.128.0/config-schema.json",
+  "$schema": "https://unpkg.com/wrangler@4.148.0/config-schema.json",
   "name": "xiaosang-gallery",
   "account_id": "ef7863c4de93e71c3496f940c8ab4865",
   "compatibility_date": "2026-11-18",
   "workers_dev": false,
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "base_path": "/xiaosang-gallery"
   },
   "routes": [
     {
