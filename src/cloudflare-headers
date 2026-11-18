@@ -1,12 +1,12 @@
-/assets/bundles/*
+/xiaosang-gallery/assets/bundles/*
   Cache-Control: public, max-age=31536000, immutable
 
-/media/*
+/xiaosang-gallery/media/*
   Cache-Control: public, max-age=86400, s-maxage=604800
 
-/originals/*
+/xiaosang-gallery/originals/*
   Cache-Control: public, max-age=3600, s-maxage=604800
   Content-Disposition: attachment
 
-/data/*
+/xiaosang-gallery/data/*
   Cache-Control: public, max-age=0, must-revalidate
