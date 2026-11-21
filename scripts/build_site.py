@@ -12,7 +12,10 @@ args=argparse.ArgumentParser()
 args.add_argument('--plan',type=Path)
 args.add_argument('--output',type=Path,default=root)
 args.add_argument('--cloudflare-static',action='store_true',help='Build a self-contained release within the Workers static file limit')
+args.add_argument('--pages', action='store_true', help='Build an independent site using R2 media')
 settings=args.parse_args()
+if settings.pages:
+    settings.cloudflare_static = True
 out=settings.output.resolve()
 out.mkdir(parents=True,exist_ok=True)
 if settings.cloudflare_static and out==root:
@@ -87,8 +90,12 @@ collection_posts={}
 counts=[]
 cover_details={}
 search_entries=[]
-profiles=load_data()
-if settings.cloudflare_static: release_images(profiles)
+if settings.pages:
+    from pages_media import catalog, MEDIA_ORIGIN
+    profiles = catalog()
+else:
+    profiles = load_data()
+    if settings.cloudflare_static: release_images(profiles)
 for profile in profiles:
     g=profile['id']
     photos=profile['works']
@@ -175,7 +182,7 @@ if highlight:
     preload=f'<link rel="preload" as="image" type="image/avif" imagesrcset="{candidates}" imagesizes="(max-width: 720px) 46vw, (max-width: 1149px) 30vw, 250px" fetchpriority="high">'
 (data/'templates.js').write_text('registerTemplates('+dump({s['id']:s['template'] for s in meta})+');\n')
 lean_meta=[{**{k:v for k,v in x.items() if k not in ('template','cover')},'cover':pack_cover(x['cover'])} for x in meta]
-config=f'<script type="application/json" id="catalog-config">{dump({"meta":lean_meta,"seeds":[pack(p) for p in seeds],"count":len(feed),"singleWebpThumb":settings.cloudflare_static,"previews":[pack_detail(cover_details[p["cover"][0]]) for p in seeds]})}</script>'
+config=f'<script type="application/json" id="catalog-config">{dump({"meta":lean_meta,"seeds":[pack(p) for p in seeds],"count":len(feed),"singleWebpThumb":settings.cloudflare_static,"mediaOrigin":MEDIA_ORIGIN if settings.pages else "","previews":[pack_detail(cover_details[p["cover"][0]]) for p in seeds]})}</script>'
 shell=(root/'src/gallery.html').read_text()
 symbols=(root/'vendor/lucide.js').read_text().split('`')[1]
 shell=shell.replace('<!-- GALLERY_ICONS -->',symbols)
@@ -183,12 +190,12 @@ shell=shell.replace('<!-- GALLERY_STYLES -->',styles)
 shell=shell.replace('<!-- GALLERY_SCRIPT -->',runtime)
 shell=shell.replace('<!-- IMAGE_PRELOAD -->',preload)
 shell=shell.replace('<!-- SITE_ANALYTICS -->','''<script>
-if (location.hostname === 'xiaosang.cc') {
+if (['xiaosang.cc', 'gallery.xiaosang.cc'].includes(location.hostname)) {
   window.addEventListener('load', () => {
     const tracker = document.createElement('script');
     tracker.src = 'https://cloud.umami.is/script.js';
     tracker.dataset.websiteId = 'e01c9f78-4607-4e60-b01c-77c8190b12b4';
-    tracker.dataset.domains = 'xiaosang.cc';
+    tracker.dataset.domains = location.hostname;
     document.head.append(tracker);
   }, {once: true});
 }
@@ -211,6 +218,8 @@ if settings.cloudflare_static:
     (out/'release.json').write_text(dump({'project':'xiaosang-gallery','version':version,'commit':head,'series':len(meta),'works':sum(s['works'] for s in meta),'posts':len(feed)})+'\n')
     headers=(root/'src/cloudflare-headers').read_text()
     (out/'_headers').write_text(headers)
+    if settings.pages:
+        (out/'_redirects').write_text(f'/media/* {MEDIA_ORIGIN}/media/:splat 302\n/originals/* {MEDIA_ORIGIN}/originals/:splat 302\n')
     staged=[f for f in out.rglob('*') if f.is_file()]
     if len(staged)>20_000 or any(f.stat().st_size>25*1024**2 for f in staged):
         raise RuntimeError('Release exceeds Workers Static Assets limits')

@@ -30,7 +30,7 @@ const nameFor=id=>id==='all'?'全部作品':id==='liked'?'已赞作品':series.g
 const $title=$('#series-title');
 
 function unpackCover([work,w,h,mw,mh]) {
-  const prefix='media/v2/'+work;
+  const prefix=(conf.mediaOrigin ? conf.mediaOrigin+'/' : '')+'media/v2/'+work;
   const useMedium=w!==mw||h!==mh;
   return [work,prefix+'-s.avif',prefix+'-s.webp',w,h,
     prefix+(useMedium?'-m.avif':'-s.avif'),
@@ -40,7 +40,7 @@ function unpack([id,group,title,cat,n,bucket,work,w,h,mw,mh]) {
   return {id,group,title,cat,n,bucket,cover:unpackCover([work,w,h,mw,mh])};
 }
 function unpackDetail([id,title,width,height,crop,quality,original,avif=true]) {
-  const prefix='media/v2/'+id;
+  const prefix=(conf.mediaOrigin ? conf.mediaOrigin+'/' : '')+'media/v2/'+id;
   return {id,title,width,height,crop,quality,original,variants:{
     s:[prefix+'-s.avif',prefix+'-s.webp'],
     detail:[prefix+(avif?'-detail.avif':'-detail.webp'),prefix+'-detail.webp'],
