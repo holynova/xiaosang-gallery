@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "preview": "python3 -m http.server 8780 --bind 127.0.0.1 -d dist",
-    "build": "python3 scripts/build_release.py"
+    "build": "python3 scripts/build_release.py",
+    "build:pages": "python3 scripts/build_release.py --pages"
   }
 }

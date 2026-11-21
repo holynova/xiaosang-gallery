@@ -7,7 +7,7 @@ import sys
 root = Path(__file__).resolve().parent.parent
 with TemporaryDirectory(prefix='.release-', dir=root) as folder:
     stage=Path(folder)/'next'
-    subprocess.run([sys.executable, str(root/'scripts/build_site.py'), '--cloudflare-static', '--output', str(stage)], check=True)
+    subprocess.run([sys.executable, str(root/'scripts/build_site.py'), *(['--pages'] if '--pages' in sys.argv else ['--cloudflare-static']), '--output', str(stage)], check=True)
     dist=root/'dist'
     previous=Path(folder)/'previous'
     if dist.exists():
