@@ -16,6 +16,8 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 
 [Color Arrangements (10)](https://gallery.xiaosang.cc/?series=color-arrangements) · [Displaced Scenes (40)](https://gallery.xiaosang.cc/?series=displaced-scenes) · [Vintage Book Covers (40)](https://gallery.xiaosang.cc/?series=paper-book-covers) · [Five Waterscapes (5)](https://gallery.xiaosang.cc/?series=five-waterscapes) · [Halftone City (10)](https://gallery.xiaosang.cc/?series=halftone-city) · [Paper Observations (3)](https://gallery.xiaosang.cc/?series=paper-observations)
 
+Collection notes · [Color Arrangements](docs/collections/color-arrangements/README.md) / [Displaced Scenes](docs/collections/displaced-scenes/README.md) / [Vintage Book Covers](docs/collections/paper-book-covers/README.md) / [Five Waterscapes](docs/collections/five-waterscapes/README.md) / [Halftone City](docs/collections/halftone-city/README.md) / [Paper Observations](docs/collections/paper-observations/README.md)
+
 ## Screenshot
 
 <p align="center">
@@ -28,7 +30,7 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 - **Post browsing**: sets of works are organized as posts, up to 20 images each; open a post to swipe between posts vertically and images horizontally (323 multi-image posts).
 - **Fullscreen swipe**: tap an image to view it fullscreen, swipe to the next.
 - **Local favorites**: likes are saved per image, on your device.
-- **Single-image downloads**: original or published files are only fetched when you click download (1,532 verified originals, 2,134 files kept byte-identical to the source release).
+- **Single-image downloads**: original or published files are only fetched when you click download (1,640 originals, 2,134 files kept byte-identical to the source release).
 - **Prompt templates & skills**: 22 collections have generation guides (`skills/`, 22 skill packages) with a copyable prompt template.
 - **Load on demand**: the homepage pre-renders static above-the-fold posts; the post index, per-collection lists, search, and in-group image data each load on demand.
 

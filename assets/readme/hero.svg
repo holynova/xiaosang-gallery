@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="xiaosang AI图集 — 22 个系列、3,666 张作品、1,488 个帖子汇于一处">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="xiaosang AI图集 — 28 个系列、3,774 张作品、1,596 个帖子汇于一处">
   <title>xiaosang AI图集</title>
-  <desc>AI 图片画廊：22 个系列、3,666 张作品、1,488 个帖子，按分组筛选、全屏滑览。</desc>
+  <desc>AI 图片画廊：28 个系列、3,774 张作品、1,596 个帖子，按分组筛选、全屏滑览。</desc>
 
   <rect width="1200" height="420" rx="20" fill="#FAF6EF"/>
   <rect width="1200" height="420" rx="20" fill="none" stroke="#E5DDD0" stroke-width="1.5"/>
@@ -9,17 +9,17 @@
   <text x="64" y="92" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" font-weight="600" letter-spacing="4" fill="#8E3B46">AI 图片画廊 · GALLERY</text>
   <text x="62" y="168" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="58" font-weight="700" fill="#2B2320">xiaosang AI图集</text>
   <text x="64" y="210" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#6B5F54">作品集里的图片项目，汇到一个画廊</text>
-  <text x="64" y="262" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#4A423A">22 个系列、3,666 张作品、1,488 个帖子</text>
+  <text x="64" y="262" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#4A423A">28 个系列、3,774 张作品、1,596 个帖子</text>
   <text x="64" y="296" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#6B5F54">按分组筛选、全屏滑览、本地点赞、单图下载</text>
 
   <!-- badges -->
   <g font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="600">
     <rect x="64" y="322" width="108" height="36" rx="18" fill="#8E3B46"/>
-    <text x="118" y="346" text-anchor="middle" fill="#FFFFFF">22 个系列</text>
+    <text x="118" y="346" text-anchor="middle" fill="#FFFFFF">28 个系列</text>
     <rect x="184" y="322" width="132" height="36" rx="18" fill="#FFFFFF" stroke="#D8CFC2" stroke-width="1.5"/>
-    <text x="250" y="346" text-anchor="middle" fill="#4A423A">3,666 图片</text>
+    <text x="250" y="346" text-anchor="middle" fill="#4A423A">3,774 图片</text>
     <rect x="328" y="322" width="132" height="36" rx="18" fill="#FFFFFF" stroke="#D8CFC2" stroke-width="1.5"/>
-    <text x="394" y="346" text-anchor="middle" fill="#4A423A">1,488 帖子</text>
+    <text x="394" y="346" text-anchor="middle" fill="#4A423A">1,596 帖子</text>
   </g>
 
   <!-- right: masonry mini grid -->

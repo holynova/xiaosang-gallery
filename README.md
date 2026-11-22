@@ -16,6 +16,8 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：28 个
 
 [色彩整理图集 (10)](https://gallery.xiaosang.cc/?series=color-arrangements) · [错置之境 (40)](https://gallery.xiaosang.cc/?series=displaced-scenes) · [纸上旧书 (40)](https://gallery.xiaosang.cc/?series=paper-book-covers) · [一水五景 (5)](https://gallery.xiaosang.cc/?series=five-waterscapes) · [网点里的城市 (10)](https://gallery.xiaosang.cc/?series=halftone-city) · [纸上观察 (3)](https://gallery.xiaosang.cc/?series=paper-observations)
 
+分系列图录 · [色彩整理图集](docs/collections/color-arrangements/README.zh-CN.md) / [错置之境](docs/collections/displaced-scenes/README.zh-CN.md) / [纸上旧书](docs/collections/paper-book-covers/README.zh-CN.md) / [一水五景](docs/collections/five-waterscapes/README.zh-CN.md) / [网点里的城市](docs/collections/halftone-city/README.zh-CN.md) / [纸上观察](docs/collections/paper-observations/README.zh-CN.md)
+
 ## 截图
 
 <p align="center">
@@ -28,7 +30,7 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：28 个
 - **帖子浏览**：成套作品按帖组织，每帖至多 20 张；打开帖子后上下切换帖子、左右切换组内图片（323 个多图帖）。
 - **全屏滑览**：点开图片全屏查看，滑动切图。
 - **本地点赞**：点赞按单张保存在本机。
-- **单图下载**：点击下载后才读取原始或发布文件；1,532 张为已核实的原图，2,134 张保持源站发布文件字节。
+- **单图下载**：点击下载后才读取原始或发布文件；1,640 张为已核实的原图，2,134 张保持源站发布文件字节。
 - **Prompt 模板与 Skill**：22 个原有系列提供生成说明（`skills/`，22 个 Skill 包），含可复制的 Prompt 模板。
 - **按需加载**：首页先生成覆盖首屏的静态帖子，帖子索引、分系列列表、搜索、组内图片数据均分别按需加载。
 
