@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://xiaosang.cc/xiaosang-gallery/">▶ Browse Online</a>
+  <a href="https://gallery.xiaosang.cc/">▶ Browse Online</a>
   ·
   <a href="https://github.com/holynova/xiaosang-gallery">GitHub Repository</a>
 </p>
@@ -45,6 +45,8 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 | 城市印记 (City Stamps) | 40 | 4 | City Pop 城市画册 (City Pop Album) | 46 | 6 |
 
 Counts come from the source sites' work data; page icons, screenshots, and thumbnail derivatives are not double-counted. The podcast-comics series is not among these 22 collections.
+
+Cloudflare Pages builds `main` with `npm run build:pages` and publishes `dist`. A separate Cloudflare Pages static site serves the archived media. New media ships with each Git build. Add images to `additions/<series ID>/`; each filename becomes its title. See [Cloudflare setup](docs/cloudflare.md).
 
 ## Run Locally
 

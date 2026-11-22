@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://xiaosang.cc/xiaosang-gallery/">▶ 在线浏览</a>
+  <a href="https://gallery.xiaosang.cc/">▶ 在线浏览</a>
   ·
   <a href="https://github.com/holynova/xiaosang-gallery">GitHub 仓库</a>
 </p>
@@ -45,6 +45,8 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：22 个
 | 城市印记 | 40 | 4 | City Pop 城市画册 | 46 | 6 |
 
 以源站作品数据为准；页面图标、截图、缩略图衍生件不重复入库。播客漫画不在此 22 个系列内。
+
+生产站使用 Cloudflare Pages，连接本仓库的 main，构建命令为 `npm run build:pages`，输出目录为 `dist`。历史图像由独立的 Cloudflare Pages 静态站提供。新图随本仓库推送自动发布。新增图片放入 `additions/<系列 ID>/`，文件名即标题。部署准备见 [Cloudflare 配置](docs/cloudflare.md)。
 
 ## 本地运行
 

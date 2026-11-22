@@ -29,8 +29,12 @@ const icon=name=>`<svg class="icon" aria-hidden="true"><use href="#lucide-${name
 const nameFor=id=>id==='all'?'全部作品':id==='liked'?'已赞作品':series.get(id)?.title||'全部作品';
 const $title=$('#series-title');
 
+function mediaPrefix(id) {
+  const base = id.startsWith('upload-') ? 'added/' : (conf.mediaOrigin ? conf.mediaOrigin+'/' : '');
+  return base+'media/v2/'+id;
+}
 function unpackCover([work,w,h,mw,mh]) {
-  const prefix='media/v2/'+work;
+  const prefix=mediaPrefix(work);
   const useMedium=w!==mw||h!==mh;
   return [work,prefix+'-s.avif',prefix+'-s.webp',w,h,
     prefix+(useMedium?'-m.avif':'-s.avif'),
@@ -40,7 +44,7 @@ function unpack([id,group,title,cat,n,bucket,work,w,h,mw,mh]) {
   return {id,group,title,cat,n,bucket,cover:unpackCover([work,w,h,mw,mh])};
 }
 function unpackDetail([id,title,width,height,crop,quality,original,avif=true]) {
-  const prefix='media/v2/'+id;
+  const prefix=mediaPrefix(id);
   return {id,title,width,height,crop,quality,original,variants:{
     s:[prefix+'-s.avif',prefix+'-s.webp'],
     detail:[prefix+(avif?'-detail.avif':'-detail.webp'),prefix+'-detail.webp'],
