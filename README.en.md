@@ -46,7 +46,7 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 
 Counts come from the source sites' work data; page icons, screenshots, and thumbnail derivatives are not double-counted. The podcast-comics series is not among these 22 collections.
 
-Cloudflare Pages builds `main` with `npm run build:pages` and publishes `dist`. Cloudflare R2 serves the gallery media. Add images to `additions/<series ID>/`; each filename becomes its title. See [Cloudflare setup](docs/cloudflare.md).
+Cloudflare Pages builds `main` with `npm run build:pages` and publishes `dist`. A separate Cloudflare Pages static site serves the archived media. New media ships with each Git build. Add images to `additions/<series ID>/`; each filename becomes its title. See [Cloudflare setup](docs/cloudflare.md).
 
 ## Run Locally
 

@@ -12,7 +12,7 @@ args=argparse.ArgumentParser()
 args.add_argument('--plan',type=Path)
 args.add_argument('--output',type=Path,default=root)
 args.add_argument('--cloudflare-static',action='store_true',help='Build a self-contained release within the Workers static file limit')
-args.add_argument('--pages', action='store_true', help='Build an independent site using R2 media')
+args.add_argument('--pages', action='store_true', help='Build an independent site using archived Pages media')
 settings=args.parse_args()
 if settings.pages:
     settings.cloudflare_static = True
@@ -92,7 +92,7 @@ cover_details={}
 search_entries=[]
 if settings.pages:
     from pages_media import catalog, MEDIA_ORIGIN
-    profiles = catalog()
+    profiles = catalog(out)
 else:
     profiles = load_data()
     if settings.cloudflare_static: release_images(profiles)

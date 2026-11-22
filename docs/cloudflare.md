@@ -1,9 +1,7 @@
-# Cloudflare 独立站
+# Cloudflare Pages 免费托管
 
-Cloudflare Pages 连接本仓库的 main，输出目录为 dist。使用 Python 3.12，安装 requirements.txt 后执行 npm run build:pages；可将构建命令设为 `python3 -m pip install -r requirements.txt && npm run build:pages`。在 Pages 绑定 gallery.xiaosang.cc。
+gallery.xiaosang.cc 连接本仓库 main，使用 Python 3.12，构建命令为 `python3 -m pip install -r requirements.txt && npm run build:pages`，发布 dist。改网页或在 additions/ 的系列目录中加入图片后推送即可。新图的原图、缩略图、详情图与页面进入同一版本，构建不需要 Cloudflare 密钥。
 
-图像桶为 xiaosang-gallery-media，公开读取域名为 gallery-media.xiaosang.cc。将 R2_ENDPOINT、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY 设在 Pages 的生产构建环境。后两项用加密变量，权限限于这个桶的对象读写。预览环境不给生产写凭据。
+gallery-media.xiaosang.cc 指向 xiaosang-gallery-media Pages 项目，保存迁移时已有的 media/ 和 originals/。灾难恢复时从历史正式 dist 复制这两个目录，保留下载响应头，用 Wrangler Pages Direct Upload 发布到这个媒体项目。可和 catalog/legacy-media.json 核对文件数及排序后以换行连接的相对路径 SHA-256。日常发布只构建网页仓库。
 
-首次迁移从含 media/ 和 originals/ 的原线上版本 dist 运行 `python3 scripts/pages_media.py /path/to/dist`。脚本检查清单、按校验和复用已上传的对象，完成后写入校验记录。正式构建会通过公开域名检查这份记录。核对首页、缩略图、详情图、下载和旧链接后再切换主站。
-
-日常将图片放入 additions/ 下已存在系列 ID 对应的文件夹后推送。网页构建生成缩略图、详情图和作品条目，并向 R2 补充新增对象。图片 URL 包含内容哈希。改首页样式直接推送 src/gallery.css。
+免费版每个 Pages 站点最多 20,000 个文件，每个文件最多 25 MiB。构建在超出此范围时停止。旧的 /xiaosang-gallery/ 入口由作品集转向新站。
