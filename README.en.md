@@ -1,7 +1,7 @@
 <p align="right"><a href="README.md">中文</a></p>
 
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="xiaosang Gallery — 22 collections, 3,666 images, 1,488 posts gathered in one place">
+  <img src="./assets/readme/hero.svg" width="100%" alt="xiaosang Gallery — 28 collections, 3,774 images, 1,596 posts gathered in one place">
 </p>
 
 <p align="center">
@@ -10,7 +10,11 @@
   <a href="https://github.com/holynova/xiaosang-gallery">GitHub Repository</a>
 </p>
 
-xiaosang Gallery gathers the portfolio's scattered image projects into one gallery: 22 collections, 3,666 images, 1,488 posts. Filter by group, swipe through full-screen artwork, save local favorites, download individual files — each collection also ships a copyable prompt template and a generation skill.
+xiaosang Gallery gathers the portfolio's scattered image projects into one gallery: 28 collections, 3,774 images, 1,596 posts. Filter by group, swipe through full-screen artwork, save local favorites, download individual files — 22 collections also ship a copyable prompt template and a generation skill.
+
+## New collections
+
+[Color Arrangements (10)](https://gallery.xiaosang.cc/?series=color-arrangements) · [Displaced Scenes (40)](https://gallery.xiaosang.cc/?series=displaced-scenes) · [Vintage Book Covers (40)](https://gallery.xiaosang.cc/?series=paper-book-covers) · [Five Waterscapes (5)](https://gallery.xiaosang.cc/?series=five-waterscapes) · [Halftone City (10)](https://gallery.xiaosang.cc/?series=halftone-city) · [Paper Observations (3)](https://gallery.xiaosang.cc/?series=paper-observations)
 
 ## Screenshot
 
@@ -20,12 +24,12 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 
 ## Features
 
-- **22 collections**: grouped by source project, with group filters under each collection title; see `overview.html` on the site for the full overview.
+- **28 collections**: grouped by source project, with group filters under each collection title; see `overview.html` on the site for the full overview.
 - **Post browsing**: sets of works are organized as posts, up to 20 images each; open a post to swipe between posts vertically and images horizontally (323 multi-image posts).
 - **Fullscreen swipe**: tap an image to view it fullscreen, swipe to the next.
 - **Local favorites**: likes are saved per image, on your device.
 - **Single-image downloads**: original or published files are only fetched when you click download (1,532 verified originals, 2,134 files kept byte-identical to the source release).
-- **Prompt templates & skills**: each collection has a generation guide (`skills/`, 22 skill packages) with a copyable prompt template.
+- **Prompt templates & skills**: 22 collections have generation guides (`skills/`, 22 skill packages) with a copyable prompt template.
 - **Load on demand**: the homepage pre-renders static above-the-fold posts; the post index, per-collection lists, search, and in-group image data each load on demand.
 
 ## Collections
@@ -44,7 +48,7 @@ xiaosang Gallery gathers the portfolio's scattered image projects into one galle
 | 橡胶戳艺术 (Rubber Stamp Art) | 350 | 22 | 玉雕扑克牌 (Jade Poker Cards) | 108 | 22 |
 | 城市印记 (City Stamps) | 40 | 4 | City Pop 城市画册 (City Pop Album) | 46 | 6 |
 
-Counts come from the source sites' work data; page icons, screenshots, and thumbnail derivatives are not double-counted. The podcast-comics series is not among these 22 collections.
+Counts come from the source sites' work data; page icons, screenshots, and thumbnail derivatives are not double-counted. The podcast-comics series is not among these 28 collections.
 
 Cloudflare Pages builds `main` with `npm run build:pages` and publishes `dist`. A separate Cloudflare Pages static site serves the archived media. New media ships with each Git build. Add images to `additions/<series ID>/`; each filename becomes its title. See [Cloudflare setup](docs/cloudflare.md).
 
@@ -82,5 +86,7 @@ gallery.js/css      Gallery logic and styles
 src/masonry.js      Masonry layout
 data/               Per-collection image data (loaded on demand)
 scripts/            Migration, site build, skill generation, performance measurement
-skills/             Generation skill packages for the 22 collections
+skills/             Generation skill packages for the 28 collections
 ```
+
+<a href="https://gallery.xiaosang.cc/"><img src="assets/readme/qr.png" width="112" alt="Scan to open the gallery"></a>

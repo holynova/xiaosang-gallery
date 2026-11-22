@@ -122,7 +122,7 @@ for profile in profiles:
             photos_ids=[w['id'] for w in images]
             posts[-1]['photos']=photos_ids
     thin=[{k:v for k,v in p.items() if k!='photos'} for p in posts]
-    meta.append({**{k:profile[k] for k in ('id','title','style','template','url','repo')},'works':len(photos),
+    meta.append({**{k:profile[k] for k in ('id','title','style','template','url','repo')},'hasGuide':bool(profile['template']), 'works':len(photos),
                  'posts':len(posts),'cover':thin[0]['cover'],'cats':list(dict.fromkeys(w['category'] for w in photos))})
     collection_posts[g]=thin
     work_map={w['id']:w for w in photos}
@@ -210,6 +210,8 @@ if settings.cloudflare_static:
     skills=(root/'skills/index.html').read_text()
     (out/'skills/index.html').write_text(skills.replace('../gallery.css',f'../{styles}'))
     for p in profiles:
+        if not p['template']:
+            continue
         package=Path('skills/packages')/('gallery-'+p['id'])
         release_file(package/'SKILL.md')
         for work in p['works'][:2]:

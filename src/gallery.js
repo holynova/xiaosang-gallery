@@ -165,6 +165,8 @@ function syncFilters() {
   $title.textContent=nameFor(filter);
   $('#series-toggle').setAttribute('aria-label','切换系列，当前为'+nameFor(filter));
   const group=series.get(filter);
+  $('#site-skills').hidden=group?.hasGuide===false;
+  $('[data-prompt="collection"]').hidden=group?.hasGuide===false;
   $('#site-skills').href='skills/index.html'+(group?'#'+group.id:'');
   $('#category-row').hidden=!group||group.cats.length<2;
   category.replaceChildren(new Option('全部分组',''),...(group?.cats||[]).map(label=>new Option(label,label)));
@@ -430,6 +432,8 @@ async function changePost(position,shortcut) {
   syncLike(null);
   $('#viewer-title').textContent=post.title;
   $('#viewer-series').textContent=label(post);
+  $('#viewer-skill').hidden=seriesMeta.hasGuide===false;
+  $('[data-prompt="work"]').hidden=seriesMeta.hasGuide===false;
   $('#viewer-skill').href='skills/index.html#'+post.group;
   $('#viewer-source').href=seriesMeta.url;
   imageCount(post);
@@ -575,6 +579,7 @@ async function openPrompt(scope) {
   const post=scope==='work'?viewPosts[postIndex]:screenPosts[0]||conf.seeds.find(p=>p.group===filter)||conf.seeds[0];
   if(!post)return;
   const group=series.get(post.group);
+  if(!group || group.hasGuide===false)return;
   if(!templates){try{await loadScript('data/templates.js');}catch{return;}}
   const chosen=scope==='work'?activeRendered:null;
   $('#prompt-series').textContent=group.title;

@@ -1,7 +1,7 @@
 <p align="right"><a href="README.en.md">English</a></p>
 
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="xiaosang AI图集 — 22 个系列、3,666 张作品、1,488 个帖子汇于一处">
+  <img src="./assets/readme/hero.svg" width="100%" alt="xiaosang AI图集 — 28 个系列、3,774 张作品、1,596 个帖子汇于一处">
 </p>
 
 <p align="center">
@@ -10,7 +10,11 @@
   <a href="https://github.com/holynova/xiaosang-gallery">GitHub 仓库</a>
 </p>
 
-xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：22 个系列、3,666 张图片、1,488 个帖子。按分组筛选、全屏滑览、本地点赞、单图下载，每个系列还附可复制的 Prompt 模板和生成 Skill。
+xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：28 个系列、3,774 张图片、1,596 个帖子。按分组筛选、全屏滑览、本地点赞、单图下载，其中 22 个系列附可复制的 Prompt 模板和生成 Skill。
+
+## 新增系列
+
+[色彩整理图集 (10)](https://gallery.xiaosang.cc/?series=color-arrangements) · [错置之境 (40)](https://gallery.xiaosang.cc/?series=displaced-scenes) · [纸上旧书 (40)](https://gallery.xiaosang.cc/?series=paper-book-covers) · [一水五景 (5)](https://gallery.xiaosang.cc/?series=five-waterscapes) · [网点里的城市 (10)](https://gallery.xiaosang.cc/?series=halftone-city) · [纸上观察 (3)](https://gallery.xiaosang.cc/?series=paper-observations)
 
 ## 截图
 
@@ -20,12 +24,12 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：22 个
 
 ## 功能
 
-- **22 个系列**：按源站项目归类，系列标题下可筛选分组；系列总览见站内 `overview.html`。
+- **28 个系列**：按源站项目归类，系列标题下可筛选分组；系列总览见站内 `overview.html`。
 - **帖子浏览**：成套作品按帖组织，每帖至多 20 张；打开帖子后上下切换帖子、左右切换组内图片（323 个多图帖）。
 - **全屏滑览**：点开图片全屏查看，滑动切图。
 - **本地点赞**：点赞按单张保存在本机。
 - **单图下载**：点击下载后才读取原始或发布文件；1,532 张为已核实的原图，2,134 张保持源站发布文件字节。
-- **Prompt 模板与 Skill**：每个系列一页生成说明（`skills/`，22 个 Skill 包），含可复制的 Prompt 模板。
+- **Prompt 模板与 Skill**：22 个原有系列提供生成说明（`skills/`，22 个 Skill 包），含可复制的 Prompt 模板。
 - **按需加载**：首页先生成覆盖首屏的静态帖子，帖子索引、分系列列表、搜索、组内图片数据均分别按需加载。
 
 ## 系列
@@ -44,7 +48,7 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：22 个
 | 橡胶戳艺术 | 350 | 22 | 玉雕扑克牌 | 108 | 22 |
 | 城市印记 | 40 | 4 | City Pop 城市画册 | 46 | 6 |
 
-以源站作品数据为准；页面图标、截图、缩略图衍生件不重复入库。播客漫画不在此 22 个系列内。
+以源站作品数据为准；页面图标、截图、缩略图衍生件不重复入库。播客漫画不在此 28 个系列内。
 
 生产站使用 Cloudflare Pages，连接本仓库的 main，构建命令为 `npm run build:pages`，输出目录为 `dist`。历史图像由独立的 Cloudflare Pages 静态站提供。新图随本仓库推送自动发布。新增图片放入 `additions/<系列 ID>/`，文件名即标题。部署准备见 [Cloudflare 配置](docs/cloudflare.md)。
 
@@ -84,3 +88,5 @@ data/               分系列图片数据（按需加载）
 scripts/            迁移、建站、Skill 生成、性能测量
 skills/             22 个系列的生成 Skill 包
 ```
+
+<a href="https://gallery.xiaosang.cc/"><img src="assets/readme/qr.png" width="112" alt="扫码打开图库"></a>
