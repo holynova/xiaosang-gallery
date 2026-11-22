@@ -54,6 +54,8 @@ xiaosang AI图集把作品集里分散的图片项目汇到一个画廊：28 个
 
 生产站使用 Cloudflare Pages，连接本仓库的 main，构建命令为 `npm run build:pages`，输出目录为 `dist`。历史图像由独立的 Cloudflare Pages 静态站提供。新图随本仓库推送自动发布。新增图片放入 `additions/<系列 ID>/`，文件名即标题。部署准备见 [Cloudflare 配置](docs/cloudflare.md)。
 
+历史图片由 gallery-media.xiaosang.cc 转交给固定的 Cloudflare Pages 归档。该归档在部署时校验了 15,564 个文件的 SHA-256。
+
 ## 本地运行
 
 直接打开 `index.html` 即可浏览；或起静态服务器：

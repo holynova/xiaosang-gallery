@@ -54,6 +54,8 @@ Counts come from the source sites' work data; page icons, screenshots, and thumb
 
 Cloudflare Pages builds `main` with `npm run build:pages` and publishes `dist`. A separate Cloudflare Pages static site serves the archived media. New media ships with each Git build. Add images to `additions/<series ID>/`; each filename becomes its title. See [Cloudflare setup](docs/cloudflare.md).
 
+Historical image requests on gallery-media.xiaosang.cc redirect to a pinned Cloudflare Pages archive. The archive build verified SHA-256 digests for all 15,564 files.
+
 ## Run Locally
 
 Open `index.html` directly, or serve it statically:
